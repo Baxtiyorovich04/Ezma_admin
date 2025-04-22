@@ -1,9 +1,11 @@
-
+import RouteApp from "./routes";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div className="app">
+      <RouteApp />
+    </div>
+  );
+};
 
-export default App
+export default App;
