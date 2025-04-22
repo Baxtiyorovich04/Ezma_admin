@@ -25,7 +25,7 @@ const RouteApp = () => {
           <Route path="/libraries" element={<Libraries />} />
           <Route path="/librarydetail" element={<LibraryDetail />} />
           <Route path="/books" element={<Books />} />
-          <Route path="/bookDetail" element={<BookDetail />} />
+          <Route path="/books/:id" element={<BookDetail />} />
         </Route>
       </Route>  
       <Route path="*" element={<NotFound />} />

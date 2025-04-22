@@ -1,0 +1,79 @@
+@import '../base/variables';
+
+.book-card {
+  background-color: $secondary-bg;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba($primary-color, 0.1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba($primary-color, 0.2);
+    border-color: $primary-color;
+
+    &::after {
+      transform: translateX(0);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: $primary-color;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  &__content {
+    color: $white;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: $primary-color;
+    font-weight: 600;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__author,
+  &__publisher,
+  &__quantity {
+    font-size: 1rem;
+    color: $white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: '•';
+      color: $primary-color;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin: 0.5rem;
+
+    &__title {
+      font-size: 1.25rem;
+    }
+
+    &__info {
+      gap: 0.5rem;
+    }
+  }
+}
