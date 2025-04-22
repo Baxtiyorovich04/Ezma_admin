@@ -1,0 +1,26 @@
+@use "./variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  transition: all 0.3 ease-in-out;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: $primary-bg;
+  font-family: "Inter", sans-serif;
+}
+.check{
+  color: white;
+  font-size: 30px;
+
+}
