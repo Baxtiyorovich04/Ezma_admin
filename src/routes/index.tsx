@@ -3,7 +3,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Login from "../pages/Login";
 import useAuthStore from "../store/isAuth";
 import Layout from "./Layout";
-import Dashboard from "../pages/dashboard";
+import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 import Libraries from "../pages/Libraries";
 import LibraryDetail from "../pages/LibraryDetail";
