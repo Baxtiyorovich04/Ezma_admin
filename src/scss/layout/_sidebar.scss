@@ -1,0 +1,44 @@
+@use '../base/variables' as *;
+
+.sidebar {
+  height: 100%;
+  padding: 20px 0;
+
+  &__logo {
+    padding: 0 20px;
+    margin-bottom: 30px;
+    color: $primary-color;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &-item {
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &.active {
+        border-left: 4px solid $primary-color;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@use '../base/variables' as *;
+
+.header {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__search {
+    position: relative;
+
+    input {
+      padding: 8px 12px;
+      padding-left: 36px;
+      background-color: transparent;
+      border-radius: 6px;
+      width: 300px;
+      box-shadow: 0 0 5px rgba($primary-color, $alpha: 0.2);
+      color: $white;
+
+    }
+
+    svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+    }
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+
+    img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+  }
+}
