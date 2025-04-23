@@ -1,4 +1,8 @@
 import React from "react";
+import avatar from "../../assets/icons/circle-user-solid.svg";
+import { HiMiniMoon } from "react-icons/hi2";
+import uzFlag from "../../assets/icons/flag-uz.avif"
+import { IoIosArrowDown } from "react-icons/io";
 
 const Header: React.FC = () => {
   return (
@@ -24,9 +28,17 @@ const Header: React.FC = () => {
       </div>
 
       <div className="header__right">
+        <button className="dropdown-btn">
+          <img src={uzFlag} alt="" />
+          Uzb
+          <IoIosArrowDown />
+        </button>
+        <span className="theme">
+          <HiMiniMoon />
+        </span>
         <div className="header__profile">
-          <img src="https://via.placeholder.com/32" alt="Profile" />
-          <span>Admin</span>
+          <img src={avatar} alt="" />
+          <span>Abdulloh Sodiqov</span>
         </div>
       </div>
     </div>

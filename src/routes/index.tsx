@@ -10,6 +10,9 @@ import LibraryDetail from "../pages/LibraryDetail";
 import Books from "../pages/Books";
 import BookDetail from "../pages/BookDetail";
 import NotFound from "../pages/NotFound";
+import Settings from "../pages/Settings";
+import AddLibrary from "../pages/AddLibrary";
+import MostSearched from "../pages/MostSearched";
 
 const RouteApp = () => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -25,6 +28,9 @@ const RouteApp = () => {
           <Route path="/libraries" element={<Libraries />} />
           <Route path="/librarydetail" element={<LibraryDetail />} />
           <Route path="/books" element={<Books />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/addlibrary" element={<AddLibrary />} />
+          <Route path="/mostsearched" element={<MostSearched />} />
           <Route path="/books/:id" element={<BookDetail />} />
         </Route>
       </Route>  

@@ -4,7 +4,9 @@
   height: 100%;
   padding: 20px 8px;
   padding-top: 8px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &__logo {
     padding: 0 20px;
     margin-bottom: 30px;
@@ -37,6 +39,9 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    gap: 5px;
+    display: flex;  
+    flex-direction: column;
 
     &-item {
       padding: 12px 20px;
@@ -49,7 +54,16 @@
       display: flex;
       justify-content: start;
       align-items: center;
-      
+      font-family: "Geist", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      text-align: center;
+      color: #fff;
+      .icon {
+        font-size: 20px;
+        margin-bottom: -5px;
+      }
       &:hover {
         opacity: 0.9;
       }
