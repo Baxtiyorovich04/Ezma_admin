@@ -8,7 +8,12 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--bg-primary);
-
+  .sidebar-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+  }
   &__logo {
     padding: 0 20px;
     margin-bottom: 30px;
