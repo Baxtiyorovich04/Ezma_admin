@@ -1,11 +1,13 @@
-import './scss/main.scss'
+import React from "react";
+import "./scss/main.scss";
 import RouteApp from "./routes";
+import ThemeProvider from "./components/ThemeProvider";
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div className="app">
+    <ThemeProvider>
       <RouteApp />
-    </div>
+    </ThemeProvider>
   );
 };
 

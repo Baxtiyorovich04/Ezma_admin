@@ -1,16 +1,43 @@
-@use '../base/variables' as *;
+@use "../base/variables" as *;
 
 .sidebar {
   height: 100%;
-  padding: 20px 0;
+  padding: 20px 8px;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-primary);
 
   &__logo {
     padding: 0 20px;
     margin-bottom: 30px;
-    color: $primary-color;
-    img {
-      max-width: 100%;
-      height: auto;
+    color: var(--text-primary);
+    font-family: "Pacifico", cursive;
+  }
+
+  &__profile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--bg-secondary);
+    border: 0.1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 12px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    gap: 10px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    color: var(--text-primary);
+
+    .avatar {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
     }
   }
 
@@ -18,26 +45,45 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
 
     &-item {
       padding: 12px 20px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
       display: flex;
       align-items: center;
       gap: 10px;
+      border-radius: 6px;
+      font-family: "Geist", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      text-align: center;
+      color: var(--text-primary);
+
+      .icon {
+        font-size: 20px;
+        margin-bottom: -5px;
+        color: var(--text-primary);
+      }
 
       &:hover {
-        opacity: 0.9;
+        background-color: var(--bg-secondary);
       }
 
       &.active {
-        border-left: 4px solid $primary-color;
-      }
+        background-color: var(--bg-third);
 
-      svg {
-        width: 20px;
-        height: 20px;
+        .text {
+          color: var(--text-active);
+        }
+
+        .icon {
+          color: var(--text-active);
+        }
       }
     }
   }

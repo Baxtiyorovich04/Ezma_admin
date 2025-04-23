@@ -1,5 +1,46 @@
+// Default theme (dark)
+:root {
+  --bg-primary: #030712;
+  --bg-secondary: #1f2937;
+  --bg-third: #ffff;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --border: #374151;
+  --text-active: #000
+  
+}
+
+// Light theme
+:root.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #F4F4F5;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border: #e5e7eb;
+  --bg-third: #020617;
+  --text-active: #fff
+
+
+}
+
+// Common variables
 $black: #000;
 $white: #fff;
-$primary-color: #6D28D9;
-$primary-bg: #030712;
-$secondary-bg: #1F2937;
+$primary-color: #6d28d9;
+
+// // Theme mixins 
+// @mixin light-theme {
+//   --bg-primary: #ffffff;
+//   --bg-secondary: #f3f4f6;
+//   --text-primary: #1f2937;
+//   --text-secondary: #4b5563;
+//   --border: #e5e7eb;
+// }
+
+// @mixin dark-theme {
+//   --bg-primary: #030712;
+//   --bg-secondary: #1f2937;
+//   --text-primary: #f3f4f6;
+//   --text-secondary: #9ca3af;
+//   --border: #374151;
+// }

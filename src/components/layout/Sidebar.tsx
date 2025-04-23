@@ -1,37 +1,63 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { LuLibraryBig } from "react-icons/lu";
+import { LuBook } from "react-icons/lu";
+import { MdOutlineYoutubeSearchedFor } from "react-icons/md";
+import { TbSettingsStar } from "react-icons/tb";
+import { MdAddToPhotos } from "react-icons/md";
+import { HiOutlineLogout } from "react-icons/hi";
+import { FaRegUserCircle } from "react-icons/fa";
 const Sidebar: React.FC = () => {
   const location = useLocation();
 
   const menuItems = [
-    { path: "/", label: "Dashboard", icon: "📊" },
-    { path: "/profile", label: "Profile", icon: "👥" },
-    { path: "/books", label: "Books", icon: "📦" },
-    { path: "/libraries", label: "Orders", icon: "📝" },
+    { path: "/", label: "Bosh Sahifa", icon: <LuLayoutDashboard /> },
+    { path: "/libraries", label: "Kitubxonalar", icon: <LuLibraryBig /> },
+    { path: "/books", label: "Kitoblar", icon: <LuBook /> },
+    {
+      path: "/mostsearched",
+      label: "Eng Ko'p Qidirilgan",
+      icon: <MdOutlineYoutubeSearchedFor />,
+    },
+    { path: "/settings", label: "Sozlamalar", icon: <TbSettingsStar /> },
+    { path: "/addlibrary", label: "Kutubxona ochish", icon: <MdAddToPhotos /> },
   ];
 
   return (
     <div className="sidebar">
-      <div className="sidebar__logo">
-        <h2>Ezma Admin</h2>
-      </div>
-      <ul className="sidebar__menu">
-        {menuItems.map((item) => (
-          <li
-            key={item.path}
-            className={`sidebar__menu-item ${
-              location.pathname === item.path ? "active" : ""
-            }`}
-          >
+      <div className="sidebartop">
+        <div className="sidebar__logo">
+          <h2>Ezma Admin</h2>
+        </div>
+        <NavLink className="sidebar__profile" to="/profile">
+        <FaRegUserCircle className="avatar" />  Sodiqov Abdulloh (admin)
+        </NavLink>
+        <ul className="sidebar__menu">
+          {menuItems.map((item) => (
             <Link to={item.path}>
-              <span>{item.icon}</span>
-              <span>{item.label}</span>
+              <li
+                key={item.path}
+                className={`sidebar__menu-item ${
+                  location.pathname === item.path ? "active" : ""
+                }`}
+              >
+                <span className="icon">{item.icon}</span>
+                <span className="text">{item.label}</span>
+              </li>
             </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+          ))}
+        </ul>
+      </div>
+        <div className="sidebar__menu-item">
+          <span className="icon">
+          <HiOutlineLogout />
+          </span>
+          <span className="text">
+          Log Out
+          </span>
+        </div>
+      </div>
   );
 };
 

@@ -1,35 +1,82 @@
-@import '../base/variables';
+@use "../base/variables" as *;
 
 .book-detail {
   padding: 2rem;
-  background-color: $primary-bg;
+  background-color: var(--bg-primary);
   min-height: 100vh;
-  color: $white;
+  color: var(--text-primary);
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  &__content {
-    width: 100%;
+  &__container {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: $secondary-bg;
+    background-color: var(--bg-secondary);
     padding: 3rem;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba($primary-color, 0.1);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+
+  &__cover {
+    img {
       width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, $primary-color, lighten($primary-color, 20%));
+      max-width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__info {
+    h3 {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 0.9;
+      }
     }
   }
 
@@ -45,7 +92,7 @@
     gap: 0.5rem;
     transition: all 0.3s ease;
     font-weight: 500;
-    
+
     &:hover {
       background: rgba($primary-color, 0.2);
       border-color: $primary-color;
@@ -57,49 +104,49 @@
   &__modal {
     :global {
       .ant-modal-content {
-        background-color: $secondary-bg;
+        background-color: var(--bg-secondary);
         border: 1px solid rgba($primary-color, 0.2);
         box-shadow: 0 8px 32px rgba($primary-color, 0.2);
       }
-      
+
       .ant-modal-header {
-        background-color: $secondary-bg;
+        background-color: var(--bg-secondary);
         border-bottom: 1px solid rgba($primary-color, 0.1);
-        
+
         .ant-modal-title {
           color: $primary-color;
           font-weight: 600;
         }
       }
-      
+
       .ant-modal-body {
-        color: $white;
+        color: var(--text-primary);
       }
-      
+
       .ant-modal-footer {
         border-top: 1px solid rgba($primary-color, 0.1);
-        
+
         .ant-btn {
           border-color: rgba($primary-color, 0.2);
-          
+
           &:hover {
             border-color: $primary-color;
           }
         }
-        
+
         .ant-btn-primary {
           background-color: $primary-color;
           border-color: $primary-color;
-          
+
           &:hover {
             background-color: lighten($primary-color, 10%);
             border-color: lighten($primary-color, 10%);
           }
-          
+
           &.ant-btn-dangerous {
             background-color: #ef4444;
             border-color: #ef4444;
-            
+
             &:hover {
               background-color: lighten(#ef4444, 10%);
               border-color: lighten(#ef4444, 10%);
@@ -121,7 +168,7 @@
     width: 100%;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -10px;
       left: 50%;
@@ -147,7 +194,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      
+
       strong {
         color: $primary-color;
         min-width: 150px;
@@ -156,6 +203,7 @@
 
       span {
         flex: 1;
+        color: var(--text-secondary);
       }
     }
   }
@@ -197,7 +245,7 @@
     h1 {
       font-size: 2.5rem;
     }
-    
+
     &__back-button {
       top: 1.25rem;
       left: 1.25rem;
@@ -225,7 +273,7 @@
       flex-direction: column;
       align-items: stretch;
     }
-    
+
     &__back-button {
       top: 1rem;
       left: 1rem;
@@ -254,7 +302,7 @@
     &__info p {
       font-size: 1rem;
     }
-    
+
     &__back-button {
       top: 0.75rem;
       left: 0.75rem;
@@ -262,4 +310,4 @@
       font-size: 0.8rem;
     }
   }
-} 
+}
