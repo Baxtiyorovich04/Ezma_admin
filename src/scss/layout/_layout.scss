@@ -4,21 +4,20 @@
   display: flex;
   height: 100vh;
   background-color: $primary-bg;
-
+  
   &__sidebar {
-    width: 250px;
+    width: 22%;
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
     background-color: $primary-bg;
-    border-right: 1px solid $primary-color;
     z-index: 100;
   }
 
-  &__main {
+  &__main { 
     flex: 1;
-    margin-left: 250px;
+    margin-left: 22%;
   }
 
   &__header {
@@ -26,11 +25,10 @@
     position: fixed;
     top: 0;
     right: 0;
-    left: 250px;
-    background-color: $primary-bg;
+    left: 22%;
     z-index: 90;
-    border-bottom: 1px solid $primary-color;
     margin-bottom: 100px;
+    box-shadow: 0 0 10px rgba($primary-color, $alpha: 0.1);
 
   }
 
