@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import avatar from "../../assets/icons/circle-user-solid.svg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { LuLibraryBig } from "react-icons/lu";
 import { LuBook } from "react-icons/lu";
@@ -8,6 +7,7 @@ import { MdOutlineYoutubeSearchedFor } from "react-icons/md";
 import { TbSettingsStar } from "react-icons/tb";
 import { MdAddToPhotos } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
+import { FaRegUserCircle } from "react-icons/fa";
 const Sidebar: React.FC = () => {
   const location = useLocation();
 
@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
           <h2>Ezma Admin</h2>
         </div>
         <NavLink className="sidebar__profile" to="/profile">
-          <img src={avatar} alt="" /> Amir sourl (admin)
+        <FaRegUserCircle className="avatar" />  Sodiqov Abdulloh (admin)
         </NavLink>
         <ul className="sidebar__menu">
           {menuItems.map((item) => (

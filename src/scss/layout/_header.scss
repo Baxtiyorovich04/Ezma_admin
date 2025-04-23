@@ -1,4 +1,4 @@
-@use '../base/variables' as *;
+@use "../base/variables" as *;
 
 .header {
   height: 100%;
@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
+  background-color: var(--bg-primary);
 
   &__left {
     display: flex;
@@ -25,12 +26,15 @@
     input {
       padding: 8px 12px;
       padding-left: 36px;
-      background-color: transparent;
+      background-color: var(--bg-secondary);
       border-radius: 6px;
       width: 300px;
       box-shadow: 0 0 5px rgba($primary-color, $alpha: 0.2);
-      color: $white;
+      color: var(--text-primary);
 
+      &::placeholder {
+        color: var(--text-secondary);
+      }
     }
 
     svg {
@@ -38,35 +42,43 @@
       left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: #9ca3af;
+      color: var(--text-secondary);
     }
   }
-  .dropdown-btn{
-    background-color: $secondary-bg;
-    padding: 8px 10px ;
+
+  .dropdown-btn {
+    background-color: var(--bg-secondary);
+    padding: 8px 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 6px;
     font-weight: 600;
-    color: $white;
-    font-family: "Poppins" sans-serif ;
+    color: var(--text-primary);
+    font-family: "Poppins", sans-serif;
     height: 35px;
 
-    img{
+    img {
       width: 20px;
       border-radius: 50%;
     }
   }
-  .theme{
+
+  .theme {
     display: grid;
     place-items: center;
-    color: $white;
-    background-color: $secondary-bg;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
     padding: 8px 12px;
     font-size: 18px;
     border-radius: 10px;
     height: 35px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 
   &__profile {
@@ -74,12 +86,14 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    color: $white;
-    font-family: "Poppins" sans-serif;
+    color: var(--text-primary);
+    font-family: "Poppins", sans-serif;
     font-weight: 500;
-    img {
-      width: 28px;
-      height: 28px;
+
+    .avatar {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
     }
   }

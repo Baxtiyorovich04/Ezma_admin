@@ -7,31 +7,37 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--bg-primary);
+
   &__logo {
     padding: 0 20px;
     margin-bottom: 30px;
-    color: $white;
+    color: var(--text-primary);
     font-family: "Pacifico", cursive;
   }
+
   &__profile {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: start;
-    background-color: $secondary-bg;
-    border: 0.1px solid #e4e4e71f;
+    background-color: var(--bg-secondary);
+    border: 0.1px solid var(--border);
     border-radius: 4px;
     padding: 10px 12px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    background: #1f2937;
     gap: 10px;
     margin-bottom: 25px;
     font-weight: 500;
     font-size: 14px;
     line-height: 150%;
-    color: #fff;
-    img {
+    color: var(--text-primary);
+
+    .avatar {
+      display: inline-block;
       width: 22px;
+      height: 22px;
+      border-radius: 50%;
     }
   }
 
@@ -40,43 +46,43 @@
     padding: 0;
     margin: 0;
     gap: 5px;
-    display: flex;  
+    display: flex;
     flex-direction: column;
 
     &-item {
       padding: 12px 20px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
       display: flex;
       align-items: center;
       gap: 10px;
       border-radius: 6px;
-      display: flex;
-      justify-content: start;
-      align-items: center;
       font-family: "Geist", sans-serif;
       font-weight: 500;
       font-size: 16px;
       line-height: 150%;
       text-align: center;
-      color: #fff;
+      color: var(--text-primary);
+
       .icon {
         font-size: 20px;
         margin-bottom: -5px;
+        color: var(--text-primary);
       }
+
       &:hover {
-        opacity: 0.9;
+        background-color: var(--bg-secondary);
       }
 
       &.active {
-        background-color: $white;
-      }
-      &.active {
+        background-color: var(--bg-third);
+
         .text {
-          color: $text-dark !important;
+          color: var(--text-active);
         }
+
         .icon {
-          color: $text-dark;
+          color: var(--text-active);
         }
       }
     }

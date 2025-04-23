@@ -1,10 +1,13 @@
 import React from "react";
-import avatar from "../../assets/icons/circle-user-solid.svg";
-import { HiMiniMoon } from "react-icons/hi2";
-import uzFlag from "../../assets/icons/flag-uz.avif"
+import { HiMiniMoon, HiMiniSun } from "react-icons/hi2";
+import uzFlag from "../../assets/icons/flag-uz.avif";
 import { IoIosArrowDown } from "react-icons/io";
+import useThemeStore from "../../store/theme";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Header: React.FC = () => {
+  const { theme, toggleTheme } = useThemeStore();
+
   return (
     <div className="header">
       <div className="header__left">
@@ -33,12 +36,11 @@ const Header: React.FC = () => {
           Uzb
           <IoIosArrowDown />
         </button>
-        <span className="theme">
-          <HiMiniMoon />
-        </span>
+        <button className="theme" onClick={toggleTheme}>
+          {theme === "dark" ? <HiMiniSun /> : <HiMiniMoon />}
+        </button>
         <div className="header__profile">
-          <img src={avatar} alt="" />
-          <span>Abdulloh Sodiqov</span>
+          <FaRegUserCircle className="avatar" /> <span>Abdulloh Sodiqov</span>
         </div>
       </div>
     </div>

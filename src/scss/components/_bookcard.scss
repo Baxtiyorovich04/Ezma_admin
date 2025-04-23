@@ -1,7 +1,7 @@
 @import '../base/variables';
 
 .book-card {
-  background-color: $secondary-bg;
+  background-color:var(--bg-secondary);
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s ease;
