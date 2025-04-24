@@ -12,6 +12,22 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    .sidebar-btn {
+      background-color: var(--bg-secondary);
+      border: none;
+      cursor: pointer;
+      color: var(--text-primary);
+      font-size: 20px;
+      border-radius: 10px;
+      width: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 35px;
+      &:hover {
+        box-shadow: 0 0 5px rgba($primary-color, $alpha: 0.2);
+      }
+    }
   }
 
   &__right {
