@@ -7,21 +7,74 @@ import {
   Tag,
   Input,
   Tabs,
+  Dropdown,
+  message,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
 import { useLibraries, Library } from "../hooks/useLibraries";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import API from "../API";
 
 const Libraries = () => {
-  const { data, isLoading, error } = useLibraries();
+  const { data, isLoading, error, refetch } = useLibraries();
   const [displayedData, setDisplayedData] = useState<Library[]>([]);
   const [likedLibraries, setLikedLibraries] = useState<number[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("active");
   const containerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  const handleRowClick = (libraryId: number) => {
+    navigate(`/librarydetail/${libraryId}`);
+  };
+
+  const handleActivateLibrary = async (id: number) => {
+    try {
+      await API.patch(`/libraries/library/activate/${id}/`, {
+        is_active: true,
+      });
+      message.success("Kutubxona faollashtirildi");
+      refetch(); // Refresh library data
+    } catch (error) {
+      message.error("Xatolik yuz berdi");
+      console.error("Failed to activate library:", error);
+    }
+  };
+
+  const handleDeactivateLibrary = async (id: number) => {
+    try {
+      await API.patch(`/libraries/library/deactivate/${id}/`, {});
+      message.success("Kutubxona o'chirildi");
+      refetch(); // Refresh library data
+    } catch (error) {
+      message.error("Xatolik yuz berdi");
+      console.error("Failed to deactivate library:", error);
+    }
+  };
+
+  const getDropdownItems = (record: Library) => {
+    return [
+      {
+        key: "activate",
+        label: "Faollashtirish",
+        onClick: (e: any) => {
+          e.domEvent.stopPropagation();
+          handleActivateLibrary(record.id);
+        },
+      },
+      {
+        key: "deactivate",
+        label: "O'chirish",
+        onClick: (e: any) => {
+          e.domEvent.stopPropagation();
+          handleDeactivateLibrary(record.id);
+        },
+      },
+    ];
+  };
 
   const columns: ColumnsType<Library> = [
     {
@@ -34,7 +87,10 @@ const Libraries = () => {
           className={`like-button ${
             likedLibraries.includes(record.id) ? "liked" : ""
           }`}
-          onClick={() => handleLike(record.id)}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent row click
+            handleLike(record.id);
+          }}
         >
           {likedLibraries.includes(record.id) ? <FaHeart /> : <FaRegHeart />}
         </button>
@@ -46,11 +102,6 @@ const Libraries = () => {
       key: "name",
       fixed: "left",
       width: 250,
-      render: (text, record) => (
-        <Link to={`/librarydetail/${record.id}`} className="library-name">
-          {text}
-        </Link>
-      ),
     },
     {
       title: "Status",
@@ -81,7 +132,19 @@ const Libraries = () => {
       key: "actions",
       width: 80,
       fixed: "right",
-      render: () => <button className="action-button">•••</button>,
+      render: (_, record) => (
+        <Dropdown
+          menu={{ items: getDropdownItems(record) }}
+          trigger={["click"]}
+        >
+          <button
+            className="action-button"
+            onClick={(e) => e.stopPropagation()} // Prevent row click
+          >
+            •••
+          </button>
+        </Dropdown>
+      ),
     },
   ];
 
@@ -242,6 +305,10 @@ const Libraries = () => {
           }}
           showSorterTooltip={false}
           bordered={false}
+          onRow={(record) => ({
+            onClick: () => handleRowClick(record.id),
+            style: { cursor: "pointer" },
+          })}
         />
       </ConfigProvider>
     </div>

@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <Toaster position="top-right" richColors />
+      <Toaster position="top-right" />
 
       <RouteApp />
     </ThemeProvider>

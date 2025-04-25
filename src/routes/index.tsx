@@ -26,14 +26,14 @@ const RouteApp = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/libraries" element={<Libraries />} />
-          <Route path="/librarydetail" element={<LibraryDetail />} />
+          <Route path="/librarydetail/:id" element={<LibraryDetail />} />
           <Route path="/books" element={<Books />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/addlibrary" element={<AddLibrary />} />
           <Route path="/mostsearched" element={<MostSearched />} />
           <Route path="/books/:id" element={<BookDetail />} />
         </Route>
-      </Route>  
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
