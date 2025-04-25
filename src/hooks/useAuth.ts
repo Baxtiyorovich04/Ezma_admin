@@ -33,7 +33,8 @@ const useLogin = (): UseMutationResult<LoginResponse, Error, LoginPayload, unkno
       if (data.refresh && data.access) {
         // Store tokens temporarily
         const tempAccessToken = data.access;
-        const tempRefreshToken = data.refresh;
+        // Remove or comment out the unused variable
+        // const tempRefreshToken = data.refresh;
 
         try {
           // Check if user is admin with the new token

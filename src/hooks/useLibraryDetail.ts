@@ -15,6 +15,7 @@ export interface LibraryDetail {
   library: {
     id: number;
     user: number;
+    name: string;
     image: string | null;
     address: string;
     social_media: {

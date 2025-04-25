@@ -13,7 +13,7 @@ import {
 import type { ColumnsType } from "antd/es/table";
 import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
 import { useLibraries, Library } from "../hooks/useLibraries";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import API from "../API";
