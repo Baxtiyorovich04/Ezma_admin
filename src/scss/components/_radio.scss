@@ -1,0 +1,31 @@
+.ant-radio-group {
+  width: 100%;
+  
+  .ant-radio-button-wrapper {
+    flex: 1;
+    text-align: center;
+    border-color: #d9d9d9;
+    color: #000000;
+    background: #ffffff;
+    
+    &:hover {
+      color: #1677ff;
+    }
+    
+    &::before {
+      display: none;
+    }
+  }
+  
+  .ant-radio-button-wrapper-checked {
+    background: #1677ff;
+    border-color: #1677ff;
+    color: #ffffff;
+    
+    &:hover {
+      background: #1677ff;
+      border-color: #1677ff;
+      color: #ffffff;
+    }
+  }
+} 

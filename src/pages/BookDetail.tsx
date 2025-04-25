@@ -22,7 +22,7 @@ const BookDetail = () => {
 
   const handleLibraryClick = () => {
     if (book?.library) {
-      navigate(`/libraries/${book.library}`);
+      navigate(`/librarydetail/${book.library}`);
     }
   };
 
