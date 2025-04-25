@@ -5,9 +5,10 @@ import ThemeProvider from "./components/ThemeProvider";
 import { Toaster } from "sonner";
 
 const App: React.FC = () => {
+  const  theme  =  localStorage.getItem("theme") as "light" | "dark" | "system";
   return (
     <ThemeProvider>
-      <Toaster position="top-right" richColors />
+      <Toaster position="top-right"   />
 
       <RouteApp />
     </ThemeProvider>

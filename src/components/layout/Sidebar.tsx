@@ -8,8 +8,10 @@ import { TbSettingsStar } from "react-icons/tb";
 import { MdAddToPhotos } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
 import { FaRegUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const Sidebar: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const menuItems = [
     { path: "/", label: "Bosh Sahifa", icon: <LuLayoutDashboard /> },
@@ -49,7 +51,11 @@ const Sidebar: React.FC = () => {
           ))}
         </ul>
       </div>
-        <div className="sidebar__menu-item">
+        <div onClick={() => {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          navigate("/login");
+        }} className="sidebar__menu-item">
           <span className="icon">
           <HiOutlineLogout />
           </span>
