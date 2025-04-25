@@ -114,7 +114,7 @@ const Books: React.FC = () => {
       title: 'Book Name',
       dataIndex: 'name',
       key: 'name',
-      fixed: 'left' as const,
+      fixed: 'left',
       width: 250,
       render: (text: string) => <span className="book-name">{text}</span>,
     },
@@ -132,24 +132,13 @@ const Books: React.FC = () => {
     },
     {
       title: 'Available Copies',
-      dataIndex: 'total_books',
-      key: 'total_books',
+      dataIndex: 'quantity_in_library',
+      key: 'quantity_in_library',
       width: 150,
-      render: (total: number) => (
-        <Tag color={total > 0 ? 'success' : 'error'} className="quantity-tag">
-          {total} {total === 1 ? 'book' : 'books'}
+      render: (quantity: number) => (
+        <Tag color={quantity > 0 ? 'success' : 'error'} className="quantity-tag">
+          {quantity} {quantity === 1 ? 'copy' : 'copies'}
         </Tag>
-      ),
-    },
-    {
-      title: 'Library',
-      dataIndex: 'library_id',
-      key: 'library_id',
-      width: 120,
-      render: (libraryId: string, record: Book) => (
-        <a href={`/libraries/${libraryId}`} className="library-link">
-          {record.library_name || 'Unknown Library'}
-        </a>
       ),
     }
   ];
@@ -180,7 +169,7 @@ const Books: React.FC = () => {
           activeKey={activeFilter}
           onChange={(key) => {
             setActiveFilter(key);
-            setCurrentPage(1); // Reset to first page when filter changes
+            setCurrentPage(1);
           }}
           items={[
             { label: 'All Books', key: 'all' },
@@ -196,7 +185,7 @@ const Books: React.FC = () => {
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            setCurrentPage(1); // Reset to first page when search changes
+            setCurrentPage(1);
           }}
           className="search-input"
         />
@@ -212,7 +201,7 @@ const Books: React.FC = () => {
           },
           components: {
             Table: {
-              headerBg: 'var(--bg-primary)',
+              headerBg: 'transparent',
               headerColor: 'var(--text-primary)',
               headerSplitColor: 'var(--border)',
               rowHoverBg: 'var(--bg-secondary)',
