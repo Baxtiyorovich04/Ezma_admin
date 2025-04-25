@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Table, ConfigProvider, theme, Spin, Alert, Tag, Input, Tabs, Pagination } from 'antd';
+import { Table, ConfigProvider, theme, Spin, Alert, Tag, Input, Radio, Pagination } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { SearchOutlined, LoadingOutlined } from '@ant-design/icons';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
@@ -165,30 +165,41 @@ const Books: React.FC = () => {
   return (
     <div className="books-container">
       <div className="books-header">
-        <Tabs
-          activeKey={activeFilter}
-          onChange={(key) => {
-            setActiveFilter(key);
-            setCurrentPage(1);
-          }}
-          items={[
-            { label: 'All Books', key: 'all' },
-            { label: 'Liked', key: 'liked' },
-            { label: 'A-Z', key: 'az' },
-            { label: 'Z-A', key: 'za' },
-          ]}
-          className="filter-tabs"
-        />
-        <Input
-          placeholder="Search books..."
-          prefix={<SearchOutlined />}
-          value={searchTerm}
+        <Radio.Group
+          value={activeFilter}
           onChange={(e) => {
-            setSearchTerm(e.target.value);
+            setActiveFilter(e.target.value);
             setCurrentPage(1);
           }}
-          className="search-input"
-        />
+          className="filter-group"
+        >
+          <Radio.Button value="all">All Books</Radio.Button>
+          <Radio.Button value="liked">Liked</Radio.Button>
+          <Radio.Button value="az">A-Z</Radio.Button>
+          <Radio.Button value="za">Z-A</Radio.Button>
+        </Radio.Group>
+        <div className="header-controls">
+          <Input
+            placeholder="Search books..."
+            prefix={<SearchOutlined />}
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+            className="search-input"
+          />
+          <Pagination
+            current={currentPage}
+            total={filterAndSortData.length}
+            pageSize={PAGE_SIZE}
+            onChange={handlePageChange}
+            showSizeChanger={false}
+            showQuickJumper
+            showTotal={(total) => `Total ${total} books`}
+            className="pagination"
+          />
+        </div>
       </div>
       <ConfigProvider
         theme={{
@@ -229,17 +240,6 @@ const Books: React.FC = () => {
             style: { cursor: 'pointer' }
           })}
         />
-        <div className="pagination-container">
-          <Pagination
-            current={currentPage}
-            total={filterAndSortData.length}
-            pageSize={PAGE_SIZE}
-            onChange={handlePageChange}
-            showSizeChanger={false}
-            showQuickJumper
-            showTotal={(total) => `Total ${total} books`}
-          />
-        </div>
       </ConfigProvider>
     </div>
   );

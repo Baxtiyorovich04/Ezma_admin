@@ -1,209 +1,149 @@
 @use "../base/variables" as *;
 
 .book-detail {
-  padding: 2rem;
-  background-color: var(--bg-primary);
-  min-height: 100vh;
-  color: var(--text-primary);
+  padding: 20px;
+  min-height: calc(100vh - 84px);
   width: 100%;
+  max-width: 98%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  &__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: var(--bg-secondary);
-    padding: 3rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 2rem;
   }
 
-  &__title {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-primary);
+  &__back-button {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-primary) !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    height: auto !important;
+    transition: all 0.3s ease !important;
+
+    &:hover {
+      border-color: var(--primary-color) !important;
+      color: var(--primary-color) !important;
+      background: rgba(109, 40, 217, 0.1) !important;
+    }
+
+    .anticon {
+      margin-right: 8px;
+    }
   }
 
   &__content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 2rem;
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    border: 1px solid var(--border);
   }
 
-  &__cover {
-    img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  &__card {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+
+    .ant-card-body {
+      padding: 0;
     }
   }
 
-  &__info {
-    h3 {
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-
-    p {
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-
-    button {
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      background-color: var(--bg-secondary);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover {
-        opacity: 0.9;
-      }
-    }
-  }
-
-  &__back-button {
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    background: rgba($primary-color, 0.1);
-    border: 1px solid rgba($primary-color, 0.3);
-    color: $primary-color;
+  &__title {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    font-weight: 500;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
 
-    &:hover {
-      background: rgba($primary-color, 0.2);
-      border-color: $primary-color;
-      color: lighten($primary-color, 10%);
-      transform: translateY(-2px);
+    .book-detail__icon {
+      font-size: 32px;
+      color: var(--primary-color);
     }
-  }
 
-  &__modal {
-    :global {
-      .ant-modal-content {
-        background-color: var(--bg-secondary);
-        border: 1px solid rgba($primary-color, 0.2);
-        box-shadow: 0 8px 32px rgba($primary-color, 0.2);
-      }
-
-      .ant-modal-header {
-        background-color: var(--bg-secondary);
-        border-bottom: 1px solid rgba($primary-color, 0.1);
-
-        .ant-modal-title {
-          color: $primary-color;
-          font-weight: 600;
-        }
-      }
-
-      .ant-modal-body {
-        color: var(--text-primary);
-      }
-
-      .ant-modal-footer {
-        border-top: 1px solid rgba($primary-color, 0.1);
-
-        .ant-btn {
-          border-color: rgba($primary-color, 0.2);
-
-          &:hover {
-            border-color: $primary-color;
-          }
-        }
-
-        .ant-btn-primary {
-          background-color: $primary-color;
-          border-color: $primary-color;
-
-          &:hover {
-            background-color: lighten($primary-color, 10%);
-            border-color: lighten($primary-color, 10%);
-          }
-
-          &.ant-btn-dangerous {
-            background-color: #ef4444;
-            border-color: #ef4444;
-
-            &:hover {
-              background-color: lighten(#ef4444, 10%);
-              border-color: lighten(#ef4444, 10%);
-            }
-          }
-        }
-      }
-    }
-  }
-
-  h1 {
-    color: $primary-color;
-    margin-bottom: 2.5rem;
-    font-size: 3rem;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: $primary-color;
-      border-radius: 2px;
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      color: var(--text-primary);
+      font-weight: 600;
     }
   }
 
   &__info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: rgba($primary-color, 0.05);
-    border-radius: 12px;
+    gap: 24px;
+    margin-bottom: 32px;
 
-    p {
-      font-size: 1.2rem;
+    .info-item {
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px;
+      background: var(--bg-primary);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
 
-      strong {
-        color: $primary-color;
-        min-width: 150px;
-        font-weight: 600;
+      &:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
       }
 
-      span {
-        flex: 1;
-        color: var(--text-secondary);
+      .anticon svg {
+        display: inline-block;
+        color: var(--bg-third);
+      }
+
+      .info-icon {
+        font-size: 24px;
+        color: var(--primary-color);
+      }
+
+      .info-content {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        label {
+          color: var(--text-secondary);
+          font-size: 14px;
+        }
+
+        span {
+          color: var(--text-primary);
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        .library-link {
+          color: var(--primary-color);
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .quantity-tag {
+          display: inline-flex;
+          align-items: center;
+          padding: 2px 12px;
+          border-radius: 16px;
+          font-size: 14px;
+          line-height: 1.5;
+          width: fit-content;
+        }
       }
     }
   }
@@ -211,103 +151,89 @@
   &__actions {
     display: flex;
     justify-content: flex-end;
-    gap: 1.5rem;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba($primary-color, 0.1);
-  }
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
 
-  &__library-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: $primary-color;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    background: rgba($primary-color, 0.1);
-    cursor: pointer;
+    button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: auto;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 500;
 
-    &:hover {
-      background: rgba($primary-color, 0.2);
-      transform: translateY(-2px);
+      .anticon {
+        font-size: 16px;
+      }
     }
   }
 
-  @media (max-width: 1200px) {
-    &__content {
-      max-width: 90%;
-      padding: 2.5rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-    }
-
-    &__back-button {
-      top: 1.25rem;
-      left: 1.25rem;
+  &__modal {
+    .ant-modal-content {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      
+      .ant-modal-header {
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border);
+        
+        .ant-modal-title {
+          color: var(--text-primary);
+        }
+      }
+      
+      .ant-modal-body {
+        color: var(--text-primary);
+      }
+      
+      .ant-modal-footer {
+        border-top: 1px solid var(--border);
+      }
     }
   }
+}
 
-  @media (max-width: 768px) {
-    padding: 1rem;
+@media (max-width: 768px) {
+  .book-detail {
+    padding: 16px;
 
-    &__content {
-      padding: 1.5rem;
-    }
+    &__title {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 12px;
 
-    h1 {
-      font-size: 2rem;
+      h1 {
+        font-size: 24px;
+      }
     }
 
     &__info {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem;
-    }
-
-    &__actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    &__back-button {
-      top: 1rem;
-      left: 1rem;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.9rem;
+      gap: 16px;
     }
   }
+}
 
-  @media (max-width: 480px) {
-    padding: 0.5rem;
+@media (max-width: 480px) {
+  .book-detail {
+    padding: 12px;
 
-    &__content {
-      padding: 1rem;
-      border-radius: 12px;
+    &__card {
+      padding: 16px !important;
     }
 
-    h1 {
-      font-size: 1.75rem;
+    &__title {
+      h1 {
+        font-size: 20px;
+      }
     }
 
     &__info {
-      padding: 1rem;
-      gap: 1rem;
-    }
-
-    &__info p {
-      font-size: 1rem;
-    }
-
-    &__back-button {
-      top: 0.75rem;
-      left: 0.75rem;
-      padding: 0.4rem 0.6rem;
-      font-size: 0.8rem;
+      .info-item {
+        padding: 12px;
+      }
     }
   }
 }
