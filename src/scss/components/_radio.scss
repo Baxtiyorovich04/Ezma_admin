@@ -1,15 +1,17 @@
+@use "../base/variables" as *;
+
 .ant-radio-group {
   width: 100%;
   
   .ant-radio-button-wrapper {
     flex: 1;
     text-align: center;
-    border-color: #d9d9d9;
-    color: #000000;
-    background: #ffffff;
+    border-color: var(--border);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
     
     &:hover {
-      color: #1677ff;
+      color: var(--primary-color);
     }
     
     &::before {
@@ -18,14 +20,87 @@
   }
   
   .ant-radio-button-wrapper-checked {
-    background: #1677ff;
-    border-color: #1677ff;
-    color: #ffffff;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-active);
     
     &:hover {
-      background: #1677ff;
-      border-color: #1677ff;
-      color: #ffffff;
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: var(--text-active);
+    }
+  }
+}
+
+// Fix input placeholder and text color in dark mode
+.ant-input {
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+  border: none !important;
+
+  &::placeholder {
+    color: var(--text-secondary) !important;
+  }
+
+  &:hover {
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  &:focus {
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--primary-color) !important;
+    box-shadow: none !important;
+  }
+}
+
+// Fix pagination in dark mode
+.ant-pagination {
+  .ant-pagination-item {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border) !important;
+    a {
+      color: var(--text-primary) !important;
+    }
+  }
+
+  .ant-pagination-item-active {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    a {
+      color: var(--text-active) !important;
+    }
+  }
+
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    button {
+      background: var(--bg-secondary) !important;
+      border-color: var(--border) !important;
+      color: var(--text-primary) !important;
+    }
+  }
+}
+
+// Fix filter buttons
+.ant-btn {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+
+  &:hover {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+  }
+
+  &.ant-btn-primary {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--text-active) !important;
+
+    &:hover {
+      background: var(--primary-color-hover) !important;
+      border-color: var(--primary-color-hover) !important;
     }
   }
 } 
