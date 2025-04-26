@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetBookById, deleteBook } from '../hooks/useGetBooks';
-import { Modal, Button, ConfigProvider, theme } from 'antd';
+import { Modal, Button, ConfigProvider, theme, Card, Tag, Tooltip } from 'antd';
 import { useState } from 'react';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, DeleteOutlined, BookOutlined, UserOutlined, BankOutlined, CopyOutlined } from '@ant-design/icons';
 
 const BookDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,7 +22,7 @@ const BookDetail = () => {
 
   const handleLibraryClick = () => {
     if (book?.library) {
-      navigate(`/libraries/${book.library}`);
+      navigate(`/librarydetail/${book.library}`);
     }
   };
 
@@ -30,13 +30,27 @@ const BookDetail = () => {
     navigate('/books');
   };
 
-  if (isLoading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">Error loading book details</div>;
-  if (!book) return <div className="no-data">Book not found</div>;
+  if (isLoading) return (
+    <div className="loading-container">
+      <div className="loading">Loading...</div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="error-container">
+      <div className="error">Error loading book details</div>
+    </div>
+  );
+  
+  if (!book) return (
+    <div className="error-container">
+      <div className="no-data">Book not found</div>
+    </div>
+  );
 
   return (
     <div className="book-detail">
-      <div className="book-detail__content">
+      <div className="book-detail__header">
         <Button 
           className="book-detail__back-button"
           icon={<ArrowLeftOutlined />}
@@ -44,48 +58,82 @@ const BookDetail = () => {
         >
           Back to Books
         </Button>
-        <h1>{book.name}</h1>
-        <div className="book-detail__info">
-          <p>
-            <strong>Author:</strong>
-            <span>{book.author}</span>
-          </p>
-          <p>
-            <strong>Publisher:</strong>
-            <span>{book.publisher}</span>
-          </p>
-          <p>
-            <strong>Available Copies:</strong>
-            <span>{book.quantity_in_library}</span>
-          </p>
-          <p>
-            <strong>Library ID:</strong>
-            <span 
-              className="book-detail__library-link"
-              onClick={handleLibraryClick}
-            >
-              {book.library}
-            </span>
-          </p>
-        </div>
-        <div className="book-detail__actions">
-          <Button 
-            type="primary" 
-            danger 
-            onClick={() => setIsDeleteModalVisible(true)}
-          >
-            Delete Book
-          </Button>
-        </div>
+      </div>
+
+      <div className="book-detail__content">
+        <Card className="book-detail__card">
+          <div className="book-detail__title">
+            <BookOutlined className="book-detail__icon" />
+            <h1>{book.name}</h1>
+          </div>
+
+          <div className="book-detail__info">
+            <div className="info-item">
+              <UserOutlined className="info-icon" />
+              <div className="info-content">
+                <label>Author</label>
+                <span>{book.author}</span>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <BankOutlined className="info-icon" />
+              <div className="info-content">
+                <label>Publisher</label>
+                <span>{book.publisher}</span>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <CopyOutlined className="info-icon" />
+              <div className="info-content">
+                <label>Available Copies</label>
+                <Tag 
+                  color={book.quantity_in_library > 0 ? 'success' : 'error'}
+                  className="quantity-tag"
+                >
+                  {book.quantity_in_library} {book.quantity_in_library === 1 ? 'copy' : 'copies'}
+                </Tag>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <BankOutlined className="info-icon" />
+              <div className="info-content">
+                <label>Library</label>
+                <span 
+                  className="library-link"
+                  onClick={handleLibraryClick}
+                >
+                  Library #{book.library}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="book-detail__actions">
+            <Tooltip title="Delete this book">
+              <Button 
+                type="primary" 
+                danger
+                icon={<DeleteOutlined />}
+                onClick={() => setIsDeleteModalVisible(true)}
+              >
+                Delete Book
+              </Button>
+            </Tooltip>
+          </div>
+        </Card>
       </div>
 
       <ConfigProvider
         theme={{
           algorithm: theme.darkAlgorithm,
           token: {
+            colorBgContainer: 'var(--bg-primary)',
+            colorText: 'var(--text-primary)',
+            colorBorderSecondary: 'var(--border)',
             colorPrimary: '#6D28D9',
-            colorBgContainer: '#1F2937',
-            colorText: '#fff',
           },
         }}
       >
