@@ -36,7 +36,10 @@
   background-color: var(--bg-secondary) !important;
 }
 
-
+.ant-pagination-options-quick-jumper input{
+  background-color: transparent !important;
+ 
+}
 .books-header {
   display: flex;
   justify-content: space-between;
