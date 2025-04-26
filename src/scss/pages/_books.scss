@@ -12,6 +12,30 @@
   background-color: var(--bg-primary);
   color: var(--text-primary);
 }
+.ant-pagination-total-text{
+  color: var(--bg-third) !important;
+}
+.ant-pagination-item-ellipsis{
+  color: var(--bg-third) !important;
+}
+
+.ant-pagination-options-quick-jumper{
+  color: var(--bg-third) !important;  
+}
+.ant-pagination-options-quick-jumper input{
+  color: var(--bg-third) !important;
+}
+.ant-pagination-options-quick-jumper input:hover{
+  border-color: var(--primary-color) !important;
+}
+.ant-pagination-options-quick-jumper input:focus{
+  border-color: var(--primary-color) !important;
+}
+.ant-input-affix-wrapper{
+  border-color: transparent !important;
+  background-color: var(--bg-secondary) !important;
+}
+
 
 .books-header {
   display: flex;
