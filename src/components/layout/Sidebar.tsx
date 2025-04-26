@@ -33,13 +33,12 @@ const Sidebar: React.FC = () => {
           <h2>Ezma Admin</h2>
         </div>
         <NavLink className="sidebar__profile" to="/profile">
-        <FaRegUserCircle className="avatar" />  Sodiqov Abdulloh (admin)
+          <FaRegUserCircle className="avatar" /> Sodiqov Abdulloh (admin)
         </NavLink>
         <ul className="sidebar__menu">
           {menuItems.map((item) => (
-            <Link to={item.path}>
+            <Link to={item.path} key={item.path}>
               <li
-                key={item.path}
                 className={`sidebar__menu-item ${
                   location.pathname === item.path ? "active" : ""
                 }`}
@@ -51,19 +50,20 @@ const Sidebar: React.FC = () => {
           ))}
         </ul>
       </div>
-        <div onClick={() => {
+      <div
+        onClick={() => {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
           navigate("/login");
-        }} className="sidebar__menu-item">
-          <span className="icon">
+        }}
+        className="sidebar__menu-item"
+      >
+        <span className="icon">
           <HiOutlineLogout />
-          </span>
-          <span className="text">
-          Log Out
-          </span>
-        </div>
+        </span>
+        <span className="text">Log Out</span>
       </div>
+    </div>
   );
 };
 
