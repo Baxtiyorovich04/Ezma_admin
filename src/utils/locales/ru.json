@@ -186,5 +186,25 @@
     "addLibrary": "Добавить библиотеку",
     "logout": "Выйти",
     "admin": "админ"
+  },
+  "libraryDetail": {
+    "loading": "Загрузка информации о библиотеке...",
+    "loadError": "Ошибка при загрузке информации о библиотеке",
+    "notFound": "Библиотека не найдена",
+    "backToLibraries": "Вернуться к библиотекам",
+    "name": "Название библиотеки",
+    "address": "Адрес",
+    "phone": "Телефон",
+    "telegram": "Telegram",
+    "totalBooks": "Всего книг",
+    "libraryBooks": "Книги библиотеки",
+    "bookName": "Название книги",
+    "author": "Автор",
+    "publisher": "Издательство",
+    "quantity": "Количество",
+    "active": "Активен",
+    "inactive": "Неактивен",
+    "back": "Назад",
+    "viewOnGoogleMaps": "Посмотреть на Google Maps"
   }
 }
