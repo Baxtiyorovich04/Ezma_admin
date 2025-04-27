@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Form, Input, Button, Switch, message } from 'antd';
 import { useAddLib } from '../hooks/useAddLib';
 import '../scss/pages/_addLibrary.scss';
