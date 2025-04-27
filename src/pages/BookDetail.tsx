@@ -3,11 +3,13 @@ import { useGetBookById, deleteBook } from '../hooks/useGetBooks';
 import { Modal, Button, ConfigProvider, theme, Card, Tag, Tooltip } from 'antd';
 import { useState } from 'react';
 import { ArrowLeftOutlined, DeleteOutlined, BookOutlined, UserOutlined, BankOutlined, CopyOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const BookDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const { t } = useTranslation();
   
   const { data: book, isLoading, error } = useGetBookById(Number(id));
 
@@ -32,19 +34,19 @@ const BookDetail = () => {
 
   if (isLoading) return (
     <div className="loading-container">
-      <div className="loading">Loading...</div>
+      <div className="loading">{t('bookDetail.loading')}</div>
     </div>
   );
   
   if (error) return (
     <div className="error-container">
-      <div className="error">Error loading book details</div>
+      <div className="error">{t('bookDetail.loadError')}</div>
     </div>
   );
   
   if (!book) return (
     <div className="error-container">
-      <div className="no-data">Book not found</div>
+      <div className="no-data">{t('bookDetail.notFound')}</div>
     </div>
   );
 
@@ -56,7 +58,7 @@ const BookDetail = () => {
           icon={<ArrowLeftOutlined />}
           onClick={handleBack}
         >
-          Back to Books
+          {t('bookDetail.backToBooks')}
         </Button>
       </div>
 
@@ -71,7 +73,7 @@ const BookDetail = () => {
             <div className="info-item">
               <UserOutlined className="info-icon" />
               <div className="info-content">
-                <label>Author</label>
+                <label>{t('bookDetail.author')}</label>
                 <span>{book.author}</span>
               </div>
             </div>
@@ -79,7 +81,7 @@ const BookDetail = () => {
             <div className="info-item">
               <BankOutlined className="info-icon" />
               <div className="info-content">
-                <label>Publisher</label>
+                <label>{t('bookDetail.publisher')}</label>
                 <span>{book.publisher}</span>
               </div>
             </div>
@@ -87,12 +89,12 @@ const BookDetail = () => {
             <div className="info-item">
               <CopyOutlined className="info-icon" />
               <div className="info-content">
-                <label>Available Copies</label>
+                <label>{t('bookDetail.availableCopies')}</label>
                 <Tag 
                   color={book.quantity_in_library > 0 ? 'success' : 'error'}
                   className="quantity-tag"
                 >
-                  {book.quantity_in_library} {book.quantity_in_library === 1 ? 'copy' : 'copies'}
+                  {book.quantity_in_library} {book.quantity_in_library === 1 ? t('books.copy') : t('books.copies')}
                 </Tag>
               </div>
             </div>
@@ -100,26 +102,26 @@ const BookDetail = () => {
             <div className="info-item">
               <BankOutlined className="info-icon" />
               <div className="info-content">
-                <label>Library</label>
+                <label>{t('bookDetail.library')}</label>
                 <span 
                   className="library-link"
                   onClick={handleLibraryClick}
                 >
-                  Library #{book.library}
+                  {t('bookDetail.libraryNumber', { number: book.library })}
                 </span>
               </div>
             </div>
           </div>
 
           <div className="book-detail__actions">
-            <Tooltip title="Delete this book">
+            <Tooltip title={t('bookDetail.deleteTooltip')}>
               <Button 
                 type="primary" 
                 danger
                 icon={<DeleteOutlined />}
                 onClick={() => setIsDeleteModalVisible(true)}
               >
-                Delete Book
+                {t('bookDetail.deleteBook')}
               </Button>
             </Tooltip>
           </div>
@@ -138,16 +140,16 @@ const BookDetail = () => {
         }}
       >
         <Modal
-          title="Confirm Delete"
+          title={t('bookDetail.confirmDeleteTitle')}
           open={isDeleteModalVisible}
           onOk={handleDelete}
           onCancel={() => setIsDeleteModalVisible(false)}
-          okText="Delete"
-          cancelText="Cancel"
+          okText={t('bookDetail.delete')}
+          cancelText={t('bookDetail.cancel')}
           okButtonProps={{ danger: true }}
           className="book-detail__modal"
         >
-          <p>Are you sure you want to delete this book? This action cannot be undone.</p>
+          <p>{t('bookDetail.confirmDeleteText')}</p>
         </Modal>
       </ConfigProvider>
     </div>

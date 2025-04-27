@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Book } from '../types/Book';
 import API from '../API';
 import '../scss/pages/_books.scss';
+import { useTranslation } from 'react-i18next';
 
 const PAGE_SIZE = 20;
 
@@ -17,6 +18,7 @@ const Books: React.FC = () => {
   const [likedBooks, setLikedBooks] = useState<Set<string>>(new Set());
   const [activeFilter, setActiveFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const { t } = useTranslation();
 
   const { data: books = [], isLoading, error } = useQuery<Book[]>({
     queryKey: ['books'],
@@ -52,7 +54,6 @@ const Books: React.FC = () => {
   const filterAndSortData = useMemo(() => {
     let filteredData = [...books];
 
-   
     if (searchTerm) {
       filteredData = filteredData.filter(
         (book) =>
@@ -73,11 +74,9 @@ const Books: React.FC = () => {
         filteredData.sort((a, b) => b.name.localeCompare(a.name));
         break;
       default:
-      
         break;
     }
 
-  
     filteredData.sort((a, b) => {
       const aLiked = likedBooks.has(a.id);
       const bLiked = likedBooks.has(b.id);
@@ -88,7 +87,6 @@ const Books: React.FC = () => {
 
     return filteredData;
   }, [books, searchTerm, activeFilter, likedBooks]);
-
 
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * PAGE_SIZE;
@@ -111,7 +109,7 @@ const Books: React.FC = () => {
       ),
     },
     {
-      title: 'Book Name',
+      title: t('books.bookName'),
       dataIndex: 'name',
       key: 'name',
       fixed: 'left',
@@ -119,25 +117,25 @@ const Books: React.FC = () => {
       render: (text: string) => <span className="book-name">{text}</span>,
     },
     {
-      title: 'Author',
+      title: t('books.author'),
       dataIndex: 'author',
       key: 'author',
       width: 200,
     },
     {
-      title: 'Publisher',
+      title: t('books.publisher'),
       dataIndex: 'publisher',
       key: 'publisher',
       width: 200,
     },
     {
-      title: 'Available Copies',
+      title: t('books.availableCopies'),
       dataIndex: 'quantity_in_library',
       key: 'quantity_in_library',
       width: 150,
       render: (quantity: number) => (
         <Tag color={quantity > 0 ? 'success' : 'error'} className="quantity-tag">
-          {quantity} {quantity === 1 ? 'copy' : 'copies'}
+          {quantity} {quantity === 1 ? t('books.copy') : t('books.copies')}
         </Tag>
       ),
     }
@@ -148,7 +146,7 @@ const Books: React.FC = () => {
       <div className="loading-container">
         <Spin 
           indicator={<LoadingOutlined style={{ fontSize: 48, color: '#6D28D9' }} spin />} 
-          tip="Loading books..."
+          tip={t('books.loading')}
         />
       </div>
     );
@@ -157,7 +155,7 @@ const Books: React.FC = () => {
   if (error) {
     return (
       <div className="error-container">
-        <Alert message="Failed to load books. Please try again later." type="error" showIcon />
+        <Alert message={t('books.loadError')} type="error" showIcon />
       </div>
     );
   }
@@ -173,14 +171,14 @@ const Books: React.FC = () => {
           }}
           className="filter-group"
         >
-          <Radio.Button value="all">All Books</Radio.Button>
-          <Radio.Button value="liked">Liked</Radio.Button>
-          <Radio.Button value="az">A-Z</Radio.Button>
-          <Radio.Button value="za">Z-A</Radio.Button>
+          <Radio.Button value="all">{t('books.allBooks')}</Radio.Button>
+          <Radio.Button value="liked">{t('books.liked')}</Radio.Button>
+          <Radio.Button value="az">{t('books.az')}</Radio.Button>
+          <Radio.Button value="za">{t('books.za')}</Radio.Button>
         </Radio.Group>
         <div className="header-controls">
           <Input
-            placeholder="Search books..."
+            placeholder={t('books.searchPlaceholder')}
             prefix={<SearchOutlined />}
             value={searchTerm}
             onChange={(e) => {
@@ -196,7 +194,7 @@ const Books: React.FC = () => {
             onChange={handlePageChange}
             showSizeChanger={false}
             showQuickJumper
-            showTotal={(total) => `Total ${total} books`}
+            showTotal={(total) => t('books.total', { total })}
             className="pagination"
           />
         </div>
