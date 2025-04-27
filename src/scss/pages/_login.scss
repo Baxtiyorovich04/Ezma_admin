@@ -8,22 +8,30 @@
   background: var(--bg-primary);
   position: relative;
   overflow: hidden;
-.toggle-theme{
+
+  .toggle-theme {
     position: absolute;
     top: 50px;
     right: 100px;
     background-color: transparent;
-    color: var(--white);
+    color: var(--text-primary);
     width: 100px;
     height: 40px;
     border-radius: 10px;
     transition: all 0.3s ease;
-    &:hover{
-        text-shadow: 0 0 10px var(--white);
-        transform: scale(1.1);
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    border: 1px solid var(--border);
 
-}
+    &:hover {
+      background-color: var(--bg-secondary);
+      transform: scale(1.05);
+    }
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -41,6 +49,8 @@
 
   .login-container {
     width: 500px;
+    position: relative;
+    z-index: 1;
 
     .login-header {
       text-align: center;
@@ -58,8 +68,6 @@
     }
 
     .login-form {
-        position: relative;
-        z-index: 1;
       .form-group {
         margin-bottom: 2rem;
 
@@ -81,14 +89,8 @@
           font-size: 1.1rem;
           transition: all 0.3s ease;
           outline: none;
-          &:focus{
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.1);
-          }
-          
 
           &:focus {
-            outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.1);
           }
@@ -103,7 +105,7 @@
         width: 100%;
         padding: 1.25rem;
         background: linear-gradient(45deg, $primary-color, #3b82f6);
-        color: var(--text-active);
+        color: white;
         border: none;
         border-radius: 1rem;
         font-weight: 600;

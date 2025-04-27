@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
 import Login from "../pages/Login";
 import useAuthStore from "../store/isAuth";
@@ -19,22 +19,28 @@ const RouteApp = () => {
 
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route element={<Layout />}>
-        <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/libraries" element={<Libraries />} />
-          <Route path="/librarydetail/:id" element={<LibraryDetail />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/addlibrary" element={<AddLibrary />} />
-          <Route path="/mostsearched" element={<MostSearched />} />
-          <Route path="/books/:id" element={<BookDetail />} />
+      {!isAuthenticated ? (
+        <>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </>
+      ) : (
+        <Route element={<Layout />}>
+          <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/libraries" element={<Libraries />} />
+            <Route path="/librarydetail/:id" element={<LibraryDetail />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/addlibrary" element={<AddLibrary />} />
+            <Route path="/mostsearched" element={<MostSearched />} />
+            <Route path="/books/:id" element={<BookDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Route>
-      </Route>
-      <Route path="*" element={<NotFound />} />
+      )}
     </Routes>
   );
 };

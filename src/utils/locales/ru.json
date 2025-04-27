@@ -130,7 +130,11 @@
     "resetPassword": "Сбросить пароль",
     "rememberMe": "Запомнить меня",
     "dontHaveAccount": "Нет аккаунта?",
-    "alreadyHaveAccount": "Уже есть аккаунт?"
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "phone": "Телефон",
+    "phonePlaceholder": "Введите номер телефона",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введите пароль"
   },
   "validation": {
     "required": "Обязательное поле",
@@ -172,5 +176,15 @@
     "delete": "Удалить",
     "cancel": "Отмена",
     "confirmDeleteText": "Вы уверены, что хотите удалить эту книгу? Это действие нельзя отменить."
+  },
+  "sidebar": {
+    "dashboard": "Главная",
+    "libraries": "Библиотеки",
+    "books": "Книги",
+    "mostSearched": "Самые искомые",
+    "settings": "Настройки",
+    "addLibrary": "Добавить библиотеку",
+    "logout": "Выйти",
+    "admin": "админ"
   }
 }

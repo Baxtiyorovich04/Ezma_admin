@@ -9,21 +9,24 @@ import { MdAddToPhotos } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 const Sidebar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const menuItems = [
-    { path: "/", label: "Bosh Sahifa", icon: <LuLayoutDashboard /> },
-    { path: "/libraries", label: "Kitubxonalar", icon: <LuLibraryBig /> },
-    { path: "/books", label: "Kitoblar", icon: <LuBook /> },
+    { path: "/", label: t("sidebar.dashboard"), icon: <LuLayoutDashboard /> },
+    { path: "/libraries", label: t("sidebar.libraries"), icon: <LuLibraryBig /> },
+    { path: "/books", label: t("sidebar.books"), icon: <LuBook /> },
     {
       path: "/mostsearched",
-      label: "Eng Ko'p Qidirilgan",
+      label: t("sidebar.mostSearched"),
       icon: <MdOutlineYoutubeSearchedFor />,
     },
-    { path: "/settings", label: "Sozlamalar", icon: <TbSettingsStar /> },
-    { path: "/addlibrary", label: "Kutubxona ochish", icon: <MdAddToPhotos /> },
+    { path: "/settings", label: t("sidebar.settings"), icon: <TbSettingsStar /> },
+    { path: "/addlibrary", label: t("sidebar.addLibrary"), icon: <MdAddToPhotos /> },
   ];
 
   return (
@@ -33,13 +36,12 @@ const Sidebar: React.FC = () => {
           <h2>Ezma Admin</h2>
         </div>
         <NavLink className="sidebar__profile" to="/profile">
-        <FaRegUserCircle className="avatar" />  Sodiqov Abdulloh (admin)
+          <FaRegUserCircle className="avatar" /> Sodiqov Abdulloh ({t("sidebar.admin")})
         </NavLink>
         <ul className="sidebar__menu">
           {menuItems.map((item) => (
-            <Link to={item.path}>
+            <Link to={item.path} key={item.path}>
               <li
-                key={item.path}
                 className={`sidebar__menu-item ${
                   location.pathname === item.path ? "active" : ""
                 }`}
@@ -51,19 +53,20 @@ const Sidebar: React.FC = () => {
           ))}
         </ul>
       </div>
-        <div onClick={() => {
+      <div
+        onClick={() => {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
           navigate("/login");
-        }} className="sidebar__menu-item">
-          <span className="icon">
+        }}
+        className="sidebar__menu-item"
+      >
+        <span className="icon">
           <HiOutlineLogout />
-          </span>
-          <span className="text">
-          Log Out
-          </span>
-        </div>
+        </span>
+        <span className="text">{t("sidebar.logout")}</span>
       </div>
+    </div>
   );
 };
 

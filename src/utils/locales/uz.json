@@ -130,7 +130,11 @@
     "resetPassword": "Parolni tiklash",
     "rememberMe": "Meni eslab qol",
     "dontHaveAccount": "Akkauntingiz yo'qmi?",
-    "alreadyHaveAccount": "Akkauntingiz bormi?"
+    "alreadyHaveAccount": "Akkauntingiz bormi?",
+    "phone": "Telefon raqam",
+    "phonePlaceholder": "Telefon raqamni kiriting",
+    "password": "Parol",
+    "passwordPlaceholder": "Parolni kiriting"
   },
   "validation": {
     "required": "Majburiy maydon",
@@ -172,5 +176,15 @@
     "delete": "O'chirish",
     "cancel": "Bekor qilish",
     "confirmDeleteText": "Ushbu kitobni o'chirishni xohlaysizmi? Bu amalni bekor qilib bo'lmaydi."
+  },
+  "sidebar": {
+    "dashboard": "Bosh Sahifa",
+    "libraries": "Kutubxonalar",
+    "books": "Kitoblar",
+    "mostSearched": "Eng Ko'p Qidirilgan",
+    "settings": "Sozlamalar",
+    "addLibrary": "Kutubxona ochish",
+    "logout": "Chiqish",
+    "admin": "admin"
   }
 }
