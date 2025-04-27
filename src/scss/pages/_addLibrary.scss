@@ -1,0 +1,142 @@
+.add-library {
+  height: calc(100vh - 145px);
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    color: var(--text-primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  &__form {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--bg-secondary);
+
+    // Input styles
+    .ant-form-item-label > label {
+      color: var(--text-primary) !important;
+      font-size: 1rem;
+    }
+
+    .ant-input {
+      background-color: var(--bg-primary) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text-primary) !important;
+      border-radius: 6px !important;
+      padding: 8px 12px !important;
+
+      &::placeholder {
+        color: var(--text-secondary) !important;
+      }
+
+      &:hover {
+        border-color: var(--primary-color) !important;
+      }
+
+      &:focus {
+        border-color: var(--primary-color) !important;
+        box-shadow: none !important;
+      }
+    }
+
+    .ant-input-password {
+      background-color: var(--bg-primary) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text-primary) !important;
+      border-radius: 6px !important;
+      padding: 0 !important;
+
+      .ant-input {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 8px 12px !important;
+      }
+
+      .ant-input-password-icon {
+        color: var(--text-secondary) !important;
+        padding-right: 12px !important;
+
+        &:hover {
+          color: var(--primary-color) !important;
+        }
+      }
+    }
+
+    .ant-switch {
+      background-color: var(--border) !important;
+
+      &.ant-switch-checked {
+        background-color: var(--primary-color) !important;
+      }
+    }
+  }
+
+  &__section {
+    margin-bottom: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    flex: 1;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 2rem;
+
+    .ant-btn {
+      background-color: var(--bg-primary) !important;
+      border-color: var(--border) !important;
+      color: var(--text-primary) !important;
+
+      &:hover {
+        border-color: var(--primary-color) !important;
+        color: var(--primary-color) !important;
+      }
+
+      &.ant-btn-primary {
+        background-color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+        color: var(--text-active) !important;
+
+        &:hover {
+          background-color: var(--primary-color-hover) !important;
+          border-color: var(--primary-color-hover) !important;
+        }
+      }
+    }
+  }
+
+  &__error {
+    color: #ff4d4f;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+} 
