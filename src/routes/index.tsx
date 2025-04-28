@@ -27,7 +27,7 @@ const RouteApp = () => {
       ) : (
         <Route element={<Layout />}>
           <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Libraries />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/libraries" element={<Libraries />} />
