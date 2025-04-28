@@ -137,30 +137,38 @@ const LibraryDetail = () => {
               <Title level={4} className="section-title">
                 <FaInfoCircle /> {t("libraryDetail.socialMedia")}
               </Title>
-              {library?.social_media.telegram && (
+              {library?.social_media.telegram || library?.social_media.instagram ? (
+                <>
+                  {library?.social_media.telegram && (
+                    <div className="info-item">
+                      <FaTelegram />
+                      <a
+                        href={library.social_media.telegram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-link"
+                      >
+                        {t("libraryDetail.telegram")}
+                      </a>
+                    </div>
+                  )}
+                  {library?.social_media.instagram && (
+                    <div className="info-item">
+                      <FaInstagram />
+                      <a
+                        href={library.social_media.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-link"
+                      >
+                        Instagram
+                      </a>
+                    </div>
+                  )}
+                </>
+              ) : (
                 <div className="info-item">
-                  <FaTelegram />
-                  <a
-                    href={library.social_media.telegram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                  >
-                    {t("libraryDetail.telegram")}
-                  </a>
-                </div>
-              )}
-              {library?.social_media.instagram && (
-                <div className="info-item">
-                  <FaInstagram />
-                  <a
-                    href={library.social_media.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                  >
-                    Instagram
-                  </a>
+                  <Text type="secondary">{t("libraryDetail.noSocialMedia")}</Text>
                 </div>
               )}
             </div>
