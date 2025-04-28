@@ -6,7 +6,11 @@ import useThemeStore from "../../store/theme";
 import { CgMenu } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onToggleSidebar: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const { theme, toggleTheme } = useThemeStore();
   const { i18n } = useTranslation();
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -59,7 +63,7 @@ const Header: React.FC = () => {
         <div className="header__logo">
           <h2>Ezma Admin</h2>
         </div>
-        <button className="sidebar-btn">
+        <button className="sidebar-btn" onClick={onToggleSidebar}>
           <CgMenu />
         </button>
       </div>
