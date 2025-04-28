@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link,  useLocation } from "react-router-dom";
+// import {NavLink} from "react-router-dom";
 // import { LuLayoutDashboard } from "react-icons/lu";
 import { LuLibraryBig } from "react-icons/lu";
 import { LuBook } from "react-icons/lu";
@@ -7,7 +8,7 @@ import { LuBook } from "react-icons/lu";
 // import { TbSettingsStar } from "react-icons/tb";
 import { MdAddToPhotos } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
-import { FaRegUserCircle } from "react-icons/fa";
+// import { FaRegUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -35,9 +36,9 @@ const Sidebar: React.FC = () => {
         <div className="sidebar__logo">
           <h2>Ezma Admin</h2>
         </div>
-        <NavLink className="sidebar__profile" to="/profile">
+        {/* <NavLink className="sidebar__profile" to="/profile">
           <FaRegUserCircle className="avatar" /> Sodiqov Abdulloh ({t("sidebar.admin")})
-        </NavLink>
+        </NavLink> */}
         <ul className="sidebar__menu">
           {menuItems.map((item) => (
             <Link to={item.path} key={item.path}>

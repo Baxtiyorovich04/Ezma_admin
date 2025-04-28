@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { HiMiniMoon, HiMiniSun } from "react-icons/hi2";
 import { IoIosArrowDown } from "react-icons/io";
 import useThemeStore from "../../store/theme";
-import { FaRegUserCircle } from "react-icons/fa";
+// import { FaRegUserCircle } from "react-icons/fa";
 import { CgMenu } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
 
@@ -101,9 +101,9 @@ const Header: React.FC = () => {
         <button className="theme" onClick={toggleTheme}>
           {theme === "dark" ? <HiMiniSun /> : <HiMiniMoon />}
         </button>
-        <div className="header__profile">
+        {/* <div className="header__profile">
           <FaRegUserCircle className="avatar" /> <span>Abdulloh Sodiqov</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
