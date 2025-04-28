@@ -6,7 +6,11 @@ import useThemeStore from "../../store/theme";
 import { CgMenu } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onToggleSidebar: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const { theme, toggleTheme } = useThemeStore();
   const { i18n } = useTranslation();
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -56,14 +60,17 @@ const Header: React.FC = () => {
   return (
     <div className="header">
       <div className="header__left">
-        <button className="sidebar-btn">
+        <div className="header__logo">
+          <h2>Ezma Admin</h2>
+        </div>
+        <button className="sidebar-btn" onClick={onToggleSidebar}>
           <CgMenu />
         </button>
       </div>
 
       <div className="header__right">
         <div className="language-switcher" ref={dropdownRef}>
-          <button 
+          <button
             className="language-switcher__button"
             onClick={() => setIsLanguageOpen(!isLanguageOpen)}
             aria-expanded={isLanguageOpen}
@@ -76,7 +83,7 @@ const Header: React.FC = () => {
             <IoIosArrowDown className={`arrow ${isLanguageOpen ? 'open' : ''}`} />
           </button>
           {isLanguageOpen && (
-            <div 
+            <div
               className="language-switcher__dropdown"
               role="menu"
               aria-label="Language options"

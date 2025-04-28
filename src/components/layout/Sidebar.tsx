@@ -33,9 +33,6 @@ const Sidebar: React.FC = () => {
   return (
     <div className="sidebar">
       <div className="sidebartop">
-        <div className="sidebar__logo">
-          <h2>Ezma Admin</h2>
-        </div>
         {/* <NavLink className="sidebar__profile" to="/profile">
           <FaRegUserCircle className="avatar" /> Sodiqov Abdulloh ({t("sidebar.admin")})
         </NavLink> */}
