@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { LuLayoutDashboard } from "react-icons/lu";
+// import { LuLayoutDashboard } from "react-icons/lu";
 import { LuLibraryBig } from "react-icons/lu";
 import { LuBook } from "react-icons/lu";
-import { MdOutlineYoutubeSearchedFor } from "react-icons/md";
-import { TbSettingsStar } from "react-icons/tb";
+// import { MdOutlineYoutubeSearchedFor } from "react-icons/md";
+// import { TbSettingsStar } from "react-icons/tb";
 import { MdAddToPhotos } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -17,15 +17,15 @@ const Sidebar: React.FC = () => {
   const { t } = useTranslation();
 
   const menuItems = [
-    { path: "/", label: t("sidebar.dashboard"), icon: <LuLayoutDashboard /> },
+    // { path: "/", label: t("sidebar.dashboard"), icon: <LuLayoutDashboard /> },
     { path: "/libraries", label: t("sidebar.libraries"), icon: <LuLibraryBig /> },
     { path: "/books", label: t("sidebar.books"), icon: <LuBook /> },
-    {
-      path: "/mostsearched",
-      label: t("sidebar.mostSearched"),
-      icon: <MdOutlineYoutubeSearchedFor />,
-    },
-    { path: "/settings", label: t("sidebar.settings"), icon: <TbSettingsStar /> },
+    // {
+    //   path: "/mostsearched",
+    //   label: t("sidebar.mostSearched"),
+    //   icon: <MdOutlineYoutubeSearchedFor />,
+    // },
+    // { path: "/settings", label: t("sidebar.settings"), icon: <TbSettingsStar /> },
     { path: "/addlibrary", label: t("sidebar.addLibrary"), icon: <MdAddToPhotos /> },
   ];
 

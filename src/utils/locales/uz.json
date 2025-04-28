@@ -13,13 +13,13 @@
   },
   "common": {
     "loading": "Yuklanmoqda...",
-    "error": "Xatolik yuz berdi",
+    "error": "Xatolik",
     "success": "Muvaffaqiyatli",
     "save": "Saqlash",
     "cancel": "Bekor qilish",
     "delete": "O'chirish",
     "edit": "Tahrirlash",
-    "search": "Qidirish",
+    "search": "Qidirish...",
     "filter": "Filtr",
     "sort": "Saralash",
     "actions": "Amallar",
@@ -34,7 +34,14 @@
     "add": "Qo'shish",
     "noData": "Ma'lumot topilmadi",
     "confirm": "Tasdiqlash",
-    "back": "Orqaga"
+    "back": "Orqaga",
+    "liked": "Yoqilgan",
+    "books": "Kitoblar",
+    "az": "A-Z",
+    "za": "Z-A",
+    "activate": "Faollashtirish",
+    "deactivate": "O'chirish",
+    "failed": "Xatolik yuz berdi"
   },
   "addLibrary": {
     "title": "Yangi kutubxona qo'shish",
@@ -140,7 +147,9 @@
     "password": "Parol",
     "passwordPlaceholder": "Parolni kiriting",
     "username": "Foydalanuvchi nomi",
-    "loginError": "Kirishda xatolik yuz berdi"
+    "loginError": "Kirishda xatolik yuz berdi",
+    "remember": "Eslab qolish",
+    "noAccount": "Hisobingiz yo'qmi?"
   },
   "validation": {
     "required": "Majburiy maydon",
@@ -155,7 +164,7 @@
     "liked": "Sevimlilar",
     "az": "A-Z",
     "za": "Z-A",
-    "searchPlaceholder": "Kitoblarni qidirish...",
+
     "bookName": "Kitob nomi",
     "author": "Muallif",
     "publisher": "Nashriyot",
@@ -163,7 +172,7 @@
     "copy": "nusxa",
     "copies": "nusxalar",
     "loading": "Kitoblar yuklanmoqda...",
-    "loadError": "Kitoblarni yuklab bo'lmadi. Iltimos, keyinroq urinib ko'ring.",
+    "loadError": "Kitoblarni yuklashda xatolik yuz berdi",
     "total": "Jami {{total}} ta kitob",
     "title": "Kitoblar",
     "addBook": "Kitob qo'shish",
@@ -179,7 +188,10 @@
     "deleteSuccess": "Kitob muvaffaqiyatli o'chirildi",
     "deleteError": "Kitobni o'chirishda xatolik yuz berdi",
     "saveSuccess": "Kitob muvaffaqiyatli saqlandi",
-    "saveError": "Kitobni saqlashda xatolik yuz berdi"
+    "saveError": "Kitobni saqlashda xatolik yuz berdi",
+    "notFound": "Kitob topilmadi",
+    "back": "Orqaga",
+    "bookInfo": "Kitob haqida ma'lumot"
   },
   "bookDetail": {
     "loading": "Yuklanmoqda...",
@@ -199,10 +211,10 @@
     "confirmDeleteText": "Ushbu kitobni o'chirishni xohlaysizmi? Bu amalni bekor qilib bo'lmaydi."
   },
   "sidebar": {
-    "dashboard": "Bosh Sahifa",
+    "dashboard": "Boshqaruv paneli",
     "libraries": "Kutubxonalar",
     "books": "Kitoblar",
-    "mostSearched": "Eng Ko'p Qidirilgan",
+    "users": "Foydalanuvchilar",
     "settings": "Sozlamalar",
     "addLibrary": "Kutubxona ochish",
     "logout": "Chiqish",
@@ -211,7 +223,7 @@
   },
   "libraryDetail": {
     "loading": "Kutubxona ma'lumotlari yuklanmoqda...",
-    "loadError": "Kutubxona ma'lumotlarini yuklashda xatolik",
+    "loadError": "Kutubxona ma'lumotlarini yuklashda xatolik yuz berdi",
     "notFound": "Kutubxona topilmadi",
     "backToLibraries": "Kutubxonalar ro'yxatiga qaytish",
     "name": "Kutubxona nomi",
@@ -256,7 +268,23 @@
     "deleteSuccess": "Kutubxona muvaffaqiyatli o'chirildi",
     "deleteError": "Kutubxonani o'chirishda xatolik yuz berdi",
     "saveSuccess": "Kutubxona muvaffaqiyatli saqlandi",
-    "saveError": "Kutubxonani saqlashda xatolik yuz berdi"
+    "saveError": "Kutubxonani saqlashda xatolik yuz berdi",
+    "loading": "Kutubxonalar yuklanmoqda...",
+    "loadError": "Kutubxonalarni yuklashda xatolik yuz berdi",
+    "library": "Kutubxona",
+    "address": "Manzil",
+    "activateSuccess": "Kutubxona faollashtirildi",
+    "deactivateSuccess": "Kutubxona o'chirildi",
+    "activateFailed": "Kutubxonani faollashtirishda xatolik yuz berdi",
+    "deactivateFailed": "Kutubxonani o'chirishda xatolik yuz berdi",
+    "filters": {
+      "active": "Faol",
+      "inactive": "Nofaol",
+      "liked": "Yoqilgan",
+      "books": "Ko'p kitoblar",
+      "az": "A-Z",
+      "za": "Z-A"
+    }
   },
   "users": {
     "title": "Foydalanuvchilar",
@@ -276,16 +304,28 @@
     "deleteSuccess": "Foydalanuvchi muvaffaqiyatli o'chirildi",
     "deleteError": "Foydalanuvchini o'chirishda xatolik yuz berdi",
     "saveSuccess": "Foydalanuvchi muvaffaqiyatli saqlandi",
-    "saveError": "Foydalanuvchini saqlashda xatolik yuz berdi"
+    "saveError": "Foydalanuvchini saqlashda xatolik yuz berdi",
+    "loading": "Foydalanuvchilar yuklanmoqda...",
+    "loadError": "Foydalanuvchilarni yuklashda xatolik yuz berdi",
+    "notFound": "Foydalanuvchi topilmadi",
+    "back": "Orqaga",
+    "userInfo": "Foydalanuvchi haqida ma'lumot"
   },
   "settings": {
     "title": "Sozlamalar",
+    "loading": "Sozlamalar yuklanmoqda...",
+    "loadError": "Sozlamalarni yuklashda xatolik yuz berdi",
+    "notFound": "Sozlamalar topilmadi",
+    "back": "Orqaga",
+    "general": "Umumiy",
+    "appearance": "Ko'rinish",
     "language": "Til",
     "theme": "Mavzu",
     "dark": "Qorong'u",
     "light": "Yorqin",
+    "system": "Tizim",
     "save": "Saqlash",
-    "saveSuccess": "Sozlamalar muvaffaqiyatli saqlandi",
-    "saveError": "Sozlamalarni saqlashda xatolik yuz berdi"
+    "cancel": "Bekor qilish",
+    "reset": "Qayta o'rnatish"
   }
 }
