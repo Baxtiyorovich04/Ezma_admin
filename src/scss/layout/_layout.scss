@@ -6,10 +6,10 @@
   background-color: var(--bg-primary);
 
   &__sidebar {
-    width: 22%;
+    width: 280px;
     position: fixed;
     left: 0;
-    top: 0;
+    top: 64px;
     height: 100%;
     background-color: var(--bg-primary);
     z-index: 100;
@@ -17,15 +17,16 @@
 
   &__main {
     flex: 1;
-    margin-left: 22%;
+    margin-left: 280px;
   }
 
   &__header {
+    width: 100%;
     height: 64px;
     position: fixed;
     top: 0;
     right: 0;
-    left: 22%;
+    // left: 280px;
     z-index: 90;
     margin-bottom: 100px;
     background-color: var(--bg-primary);
