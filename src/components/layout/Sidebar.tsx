@@ -65,6 +65,7 @@ const Sidebar: React.FC = () => {
         <span className="text">{t("sidebar.logout")}</span>
       </div>
     </div>
+    
   );
 };
 
