@@ -2,15 +2,19 @@ import React, { useState, useRef, useEffect } from "react";
 import { HiMiniMoon, HiMiniSun } from "react-icons/hi2";
 import { IoIosArrowDown } from "react-icons/io";
 import useThemeStore from "../../store/theme";
-// import { FaRegUserCircle } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 import { CgMenu } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
+import { useProfile } from "../../hooks/useProfile";
+import { NavLink } from "react-router-dom";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+  const { data: profile, error } = useProfile();
+
   const { theme, toggleTheme } = useThemeStore();
   const { i18n } = useTranslation();
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -22,11 +26,15 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
     { code: "ru", name: "Рус", icon: "RU" },
   ];
 
-  const currentLanguage = languages.find((lang) => lang.code === i18n.language) || languages[0];
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.language) || languages[0];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsLanguageOpen(false);
       }
     };
@@ -80,7 +88,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           >
             <span className="language-icon">{currentLanguage.icon}</span>
             {currentLanguage.name}
-            <IoIosArrowDown className={`arrow ${isLanguageOpen ? 'open' : ''}`} />
+            <IoIosArrowDown
+              className={`arrow ${isLanguageOpen ? "open" : ""}`}
+            />
           </button>
           {isLanguageOpen && (
             <div
@@ -91,7 +101,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
               {languages.map((lang) => (
                 <button
                   key={lang.code}
-                  className={`language-switcher__option ${lang.code === i18n.language ? 'active' : ''}`}
+                  className={`language-switcher__option ${
+                    lang.code === i18n.language ? "active" : ""
+                  }`}
                   onClick={() => handleLanguageChange(lang.code)}
                   onKeyDown={(e) => handleKeyDown(e, lang.code)}
                   role="menuitem"
@@ -108,9 +120,12 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         <button className="theme" onClick={toggleTheme}>
           {theme === "dark" ? <HiMiniSun /> : <HiMiniMoon />}
         </button>
-        {/* <div className="header__profile">
-          <FaRegUserCircle className="avatar" /> <span>Abdulloh Sodiqov</span>
-        </div> */}
+        <NavLink to="/profile">
+          <div className="header__profile">
+            <FaRegUserCircle className="avatar" />{" "}
+            <span>{profile?.name || "Loading..."}</span>
+          </div>
+        </NavLink>
       </div>
     </div>
   );
