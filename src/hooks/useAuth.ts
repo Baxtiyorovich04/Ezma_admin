@@ -3,6 +3,7 @@ import API from '../API';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
+import useAuthStore from '../store/isAuth';
 
 interface LoginPayload {
   phone: string;
@@ -24,6 +25,8 @@ interface AdminProfile {
 
 const useLogin = (): UseMutationResult<LoginResponse, Error, LoginPayload, unknown> => {
   const navigate = useNavigate();
+  const setAuthenticated = useAuthStore((state) => state.setAuthenticated);
+
   return useMutation({
     mutationFn: async (payload: LoginPayload): Promise<LoginResponse> => {
       // First get the token
@@ -60,6 +63,7 @@ const useLogin = (): UseMutationResult<LoginResponse, Error, LoginPayload, unkno
       if (data.refresh && data.access) {
         localStorage.setItem('refreshToken', data.refresh);
         localStorage.setItem('accessToken', data.access);
+        setAuthenticated(true);
         toast.success('Tizimga muvaffaqiyatli kirdingiz');
         navigate('/profile');
       } else if (data.status === false) {

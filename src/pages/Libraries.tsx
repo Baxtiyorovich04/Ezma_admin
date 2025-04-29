@@ -17,8 +17,10 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import API from "../API";
+import { useTranslation } from "react-i18next";
 
 const Libraries = () => {
+  const { t } = useTranslation();
   const { data, isLoading, error, refetch } = useLibraries();
   const [displayedData, setDisplayedData] = useState<Library[]>([]);
   const [likedLibraries, setLikedLibraries] = useState<number[]>([]);
@@ -36,10 +38,10 @@ const Libraries = () => {
       await API.patch(`/libraries/library/activate/${id}/`, {
         is_active: true,
       });
-      message.success("Kutubxona faollashtirildi");
-      refetch(); // Refresh library data
+      message.success(t("libraries.activateSuccess"));
+      refetch();
     } catch (error) {
-      message.error("Xatolik yuz berdi");
+      message.error(t("libraries.activateFailed"));
       console.error("Failed to activate library:", error);
     }
   };
@@ -47,10 +49,10 @@ const Libraries = () => {
   const handleDeactivateLibrary = async (id: number) => {
     try {
       await API.patch(`/libraries/library/deactivate/${id}/`, {});
-      message.success("Kutubxona o'chirildi");
-      refetch(); // Refresh library data
+      message.success(t("libraries.deactivateSuccess"));
+      refetch();
     } catch (error) {
-      message.error("Xatolik yuz berdi");
+      message.error(t("libraries.deactivateFailed"));
       console.error("Failed to deactivate library:", error);
     }
   };
@@ -59,7 +61,7 @@ const Libraries = () => {
     return [
       {
         key: "activate",
-        label: "Faollashtirish",
+        label: t("common.activate"),
         onClick: (e: any) => {
           e.domEvent.stopPropagation();
           handleActivateLibrary(record.id);
@@ -67,7 +69,7 @@ const Libraries = () => {
       },
       {
         key: "deactivate",
-        label: "O'chirish",
+        label: t("common.deactivate"),
         onClick: (e: any) => {
           e.domEvent.stopPropagation();
           handleDeactivateLibrary(record.id);
@@ -88,7 +90,7 @@ const Libraries = () => {
             likedLibraries.includes(record.id) ? "liked" : ""
           }`}
           onClick={(e) => {
-            e.stopPropagation(); // Prevent row click
+            e.stopPropagation();
             handleLike(record.id);
           }}
         >
@@ -97,38 +99,38 @@ const Libraries = () => {
       ),
     },
     {
-      title: "Kutubxona",
+      title: t("libraries.library"),
       dataIndex: "name",
       key: "name",
       fixed: "left",
       width: 250,
     },
     {
-      title: "Status",
+      title: t("libraries.status"),
       dataIndex: "is_active",
       key: "status",
       width: 120,
       render: (isActive) => (
         <Tag color={isActive ? "success" : "error"} className="status-tag">
-          {isActive ? "Active" : "Inactive"}
+          {isActive ? t("common.active") : t("common.inactive")}
         </Tag>
       ),
     },
     {
-      title: "Manzil",
+      title: t("libraries.address"),
       dataIndex: "address",
       key: "address",
       width: 300,
     },
     {
-      title: "Kitoblar soni",
+      title: t("libraries.totalBooks"),
       dataIndex: "total_books",
       key: "total_books",
       width: 150,
       render: (total) => `${total} ta`,
     },
     {
-      title: "",
+      title: t("libraries.actions"),
       key: "actions",
       width: 80,
       fixed: "right",
@@ -139,7 +141,7 @@ const Libraries = () => {
         >
           <button
             className="action-button"
-            onClick={(e) => e.stopPropagation()} // Prevent row click
+            onClick={(e) => e.stopPropagation()}
           >
             •••
           </button>
@@ -231,7 +233,7 @@ const Libraries = () => {
           indicator={
             <LoadingOutlined style={{ fontSize: 48, color: "#6D28D9" }} spin />
           }
-          tip="Kutubxonalar yuklanmoqda..."
+          tip={t("libraries.loading")}
         />
       </div>
     );
@@ -241,8 +243,8 @@ const Libraries = () => {
     return (
       <div className="error-container">
         <Alert
-          message="Xatolik"
-          description="Kutubxonalarni yuklashda xatolik yuz berdi."
+          message={t("common.error")}
+          description={t("libraries.loadError")}
           type="error"
           showIcon
         />
@@ -260,17 +262,17 @@ const Libraries = () => {
             filterAndSortData(likedLibraries, searchQuery, key);
           }}
           items={[
-            { label: "Active", key: "active" },
-            { label: "Inactive", key: "inactive" },
-            { label: "Liked", key: "liked" },
-            { label: "A lot of books", key: "books" },
-            { label: "A-Z", key: "az" },
-            { label: "Z-A", key: "za" },
+            { label: t("libraries.filters.active"), key: "active" },
+            { label: t("libraries.filters.inactive"), key: "inactive" },
+            { label: t("libraries.filters.liked"), key: "liked" },
+            { label: t("libraries.filters.books"), key: "books" },
+            { label: t("libraries.filters.az"), key: "az" },
+            { label: t("libraries.filters.za"), key: "za" },
           ]}
           className="filter-tabs"
         />
         <Input
-          placeholder="Search..."
+          placeholder={t("common.search")}
           prefix={<SearchOutlined />}
           value={searchQuery}
           onChange={(e) => {

@@ -5,8 +5,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 24px 0 15px;
   background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
 
   &__left {
     display: flex;
@@ -27,6 +28,12 @@
       &:hover {
         box-shadow: 0 0 5px rgba($primary-color, $alpha: 0.2);
       }
+    }
+    .header__logo {
+      width: 260px;
+      text-align: center;
+      color: var(--text-primary);
+      font-family: "Pacifico", cursive;
     }
   }
 

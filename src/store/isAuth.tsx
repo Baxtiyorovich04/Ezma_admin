@@ -6,7 +6,7 @@ interface AuthState {
 }
 
 const useAuthStore = create<AuthState>((set) => ({
-  isAuthenticated: true,
+  isAuthenticated: !!localStorage.getItem("accessToken"),
   setAuthenticated: (value) => set({ isAuthenticated: value }),
 }));
 
