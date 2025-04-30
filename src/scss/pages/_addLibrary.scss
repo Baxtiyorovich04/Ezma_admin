@@ -1,10 +1,15 @@
 .add-library {
-  height: calc(100vh - 145px);
+  height: calc(100vh);
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -webkit-scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: 50px;
 
   &__title {
     color: var(--text-primary);
@@ -15,13 +20,14 @@
 
   &__form {
     background: var(--bg-primary);
-    padding: 2rem;
+    // padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     flex: 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--bg-secondary);
+    // border: 1px solid var(--bg-secondary);
+    margin-bottom: 100px;
 
     // Input styles
     .ant-form-item-label > label {
@@ -49,7 +55,14 @@
         box-shadow: none !important;
       }
     }
-
+    .ant-select-selector {
+      background-color: var(--bg-primary) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text-primary) !important;
+      border-radius: 6px !important;
+      padding: 8px 12px !important;
+      height: 40px !important;
+    }
     .ant-input-password {
       background-color: var(--bg-primary) !important;
       border: 1px solid var(--border) !important;
@@ -173,4 +186,4 @@
       border-bottom: 1px solid var(--border);
     }
   }
-} 
+}

@@ -9,12 +9,13 @@ import {
   Tabs,
   Dropdown,
   message,
+  Pagination,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
 import { useLibraries, Library } from "../hooks/useLibraries";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import API from "../API";
 import { useTranslation } from "react-i18next";
@@ -26,6 +27,8 @@ const Libraries = () => {
   const [likedLibraries, setLikedLibraries] = useState<number[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("active");
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 20;
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -111,7 +114,11 @@ const Libraries = () => {
       key: "status",
       width: 120,
       render: (isActive) => (
-        <Tag color={isActive ? "success" : "error"} className="status-tag">
+        <Tag
+          className={`status-tag ${
+            isActive ? "ant-tag-success" : "ant-tag-error"
+          }`}
+        >
           {isActive ? t("common.active") : t("common.inactive")}
         </Tag>
       ),
@@ -226,6 +233,15 @@ const Libraries = () => {
     }
   }, [data, searchQuery, activeFilter]);
 
+  const paginatedData = useMemo(() => {
+    const startIndex = (currentPage - 1) * PAGE_SIZE;
+    return displayedData.slice(startIndex, startIndex + PAGE_SIZE);
+  }, [displayedData, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -260,6 +276,7 @@ const Libraries = () => {
           onChange={(key) => {
             setActiveFilter(key);
             filterAndSortData(likedLibraries, searchQuery, key);
+            setCurrentPage(1);
           }}
           items={[
             { label: t("libraries.filters.active"), key: "active" },
@@ -278,6 +295,7 @@ const Libraries = () => {
           onChange={(e) => {
             setSearchQuery(e.target.value);
             filterAndSortData(likedLibraries, e.target.value, activeFilter);
+            setCurrentPage(1);
           }}
           className="search-input"
         />
@@ -295,7 +313,7 @@ const Libraries = () => {
       >
         <Table
           columns={columns}
-          dataSource={displayedData?.map((library) => ({
+          dataSource={paginatedData?.map((library) => ({
             ...library,
             key: library.id,
           }))}
@@ -313,6 +331,15 @@ const Libraries = () => {
           })}
         />
       </ConfigProvider>
+      <div className="pagination">
+        <Pagination
+          current={currentPage}
+          total={displayedData.length}
+          pageSize={PAGE_SIZE}
+          onChange={handlePageChange}
+          showSizeChanger={false}
+        />
+      </div>
     </div>
   );
 };

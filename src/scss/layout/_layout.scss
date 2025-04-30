@@ -2,7 +2,7 @@
 
 .layout {
   display: flex;
-  height: 100vh;
+  height: calc(100vh);
   background-color: var(--bg-primary);
 
   &__sidebar {
@@ -24,7 +24,6 @@
     margin-left: 280px;
     width: calc(100% - 280px);
     transition: all 0.3s ease;
-
     &.collapsed {
       margin-left: 90px;
       width: calc(100% - 90px);
@@ -37,7 +36,6 @@
     position: fixed;
     top: 0;
     right: 0;
-    // left: 280px;
     z-index: 90;
     background-color: var(--bg-primary);
   }
@@ -45,9 +43,12 @@
   &__content {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
-    padding: 32px 0;
     padding-top: 92px;
     background-color: var(--bg-primary);
+    overflow-y: hidden;
+
+    &.scrollable-content {
+      overflow-y: auto;
+    }
   }
 }

@@ -1,18 +1,17 @@
 @use "../base/variables" as *;
 
 .profile-page {
-  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: calc(100vh - 80px);
-
+  padding: 0 30px;
   .profile-card {
     width: 100%;
-    max-width: 600px;
-    background-color: var(--bg-secondary);
+    padding: 30px;
+    background-color: var(--bg-primary);
     border-radius: 1rem;
-    border: 1px solid var(--border);
+    border: none;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 
     .ant-card-body {
@@ -74,15 +73,40 @@
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
-
-        .edit-button,
-        .save-button {
+        button {
           background-color: $primary-color;
           border-color: $primary-color;
+          color: var(--text-primary) !important;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+          font-weight: 500;
+          font-size: 1rem;
+          cursor: pointer;
+          border-radius: 6px;
+          border: none;
 
           &:hover {
             background-color: darken($primary-color, 10%);
             border-color: darken($primary-color, 10%);
+          }
+          &.edit-button {
+            background-color: $primary-color;
+            border-color: var(--border);
+            color: var(--text-primary) !important;
+          }
+          &.save-button {
+            background-color: #16a34a;
+            border-color: var(--border);
+            color: var(--text-primary) !important;
+          }
+          &.logout-button,
+          &.cancel-button {
+            background-color: #dc2626;
+            border-color: var(--border);
+            color: var(--text-primary) !important;
           }
         }
 

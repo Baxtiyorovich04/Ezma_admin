@@ -7,12 +7,10 @@ import {
 import {
   Card,
   Input,
-  Button,
   Avatar,
   Spin,
   Alert,
   Form,
-  Upload,
   Divider,
 } from "antd";
 import {
@@ -22,6 +20,7 @@ import {
   EditOutlined,
   SaveOutlined,
   CloseOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import useAuthStore from "../store/isAuth";
 import noImage from "../assets/images/no-image.png";
@@ -143,41 +142,37 @@ const Profile = () => {
           <div className="profile-actions">
             {!isEditing ? (
               <>
-                <Button
-                  type="primary"
-                  icon={<EditOutlined />}
+                <button
                   onClick={handleEditToggle}
                   className="edit-button"
                 >
+                  <EditOutlined />
                   Tahrirlash
-                </Button>
-                <Button
-                  type="primary"
-                  danger
+                </button>
+                <button
                   onClick={handleLogout}
                   className="logout-button"
                 >
+                  <LogoutOutlined />
                   Chiqish
-                </Button>
+                </button>
               </>
             ) : (
               <div className="edit-actions">
-                <Button
-                  type="primary"
-                  icon={<SaveOutlined />}
+                <button
                   onClick={() => form.submit()}
-                  loading={updateProfile.isPending}
                   className="save-button"
                 >
+                  <SaveOutlined />
                   Saqlash
-                </Button>
-                <Button
-                  icon={<CloseOutlined />}
+                </button>
+                <button
                   onClick={handleEditToggle}
                   className="cancel-button"
                 >
+                  <CloseOutlined /> 
                   Bekor qilish
-                </Button>
+                </button>
               </div>
             )}
           </div>

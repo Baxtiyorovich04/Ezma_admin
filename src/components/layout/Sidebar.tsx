@@ -12,11 +12,14 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useProfile } from "../../hooks/useProfile";
 
+
+
 const Sidebar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { data: profile } = useProfile();
+
 
   const menuItems = [
     // { path: "/", label: t("sidebar.dashboard"), icon: <LuLayoutDashboard /> },
@@ -43,8 +46,8 @@ const Sidebar: React.FC = () => {
     <div className="sidebar">
       <div className="sidebartop">
         <NavLink className="sidebar__profile" to="/profile">
-          <FaRegUserCircle className="avatar" /> {profile?.name || "Loading..."}{" "}
-          ({t("sidebar.admin")})
+          <FaRegUserCircle className="avatar" />
+          <span className="text">{profile?.name || "Loading..."}</span>
         </NavLink>
         <ul className="sidebar__menu">
           {menuItems.map((item) => (

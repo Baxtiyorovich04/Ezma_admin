@@ -11,7 +11,6 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     root.classList.remove("light", "dark");
     root.classList.add(theme);
 
-    // Apply theme-specific CSS variables
     if (theme === "light") {
       root.style.setProperty("--bg-primary", "#ffffff");
       root.style.setProperty("--bg-secondary", "#f3f4f6");
