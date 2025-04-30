@@ -1,13 +1,18 @@
 @use "../base/variables" as *;
 
 .library-detail {
-  padding: 1.5rem;
-  min-height: 100vh;
+  padding: 30px;
+
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   background: var(--bg-primary);
   color: var(--text-primary);
+  min-height: calc(100vh - 84px);
+  height: auto;
+  padding-bottom: 40px;
+  height: auto;
+  overflow: scroll;
 
   .back-button {
     display: flex;
@@ -31,42 +36,12 @@
 
     svg {
       font-size: 1.2rem;
-      color: #6D28D9;
+      color: #6d28d9;
     }
   }
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem;
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(109, 40, 217, 0.1) 100%);
-    border-radius: 1rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(109, 40, 217, 0.2);
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #6D28D9, #8B5CF6);
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -50%;
-      right: -50%;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
-      z-index: 0;
-    }
+    display: none;
 
     .library-detail__info {
       position: relative;
@@ -77,7 +52,7 @@
     }
 
     .library-name {
-      background: linear-gradient(45deg, #6D28D9, #8B5CF6);
+      background: linear-gradient(45deg, #6d28d9, #8b5cf6);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -92,13 +67,17 @@
       text-align: center;
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(109, 40, 217, 0.1), transparent);
+        background: linear-gradient(
+          135deg,
+          rgba(109, 40, 217, 0.1),
+          transparent
+        );
         border-radius: 1rem;
         transform: scale(0.95);
         z-index: -1;
@@ -106,14 +85,20 @@
       }
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -5px;
         left: 50%;
         transform: translateX(-50%);
         width: 60%;
         height: 3px;
-        background: linear-gradient(90deg, transparent, #6D28D9, #8B5CF6, transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #6d28d9,
+          #8b5cf6,
+          transparent
+        );
         border-radius: 2px;
         opacity: 0;
         transition: all 0.3s ease;
@@ -122,7 +107,11 @@
       &:hover {
         &::before {
           transform: scale(1);
-          background: linear-gradient(135deg, rgba(109, 40, 217, 0.15), transparent);
+          background: linear-gradient(
+            135deg,
+            rgba(109, 40, 217, 0.15),
+            transparent
+          );
         }
 
         &::after {
@@ -138,11 +127,11 @@
 
         &::before,
         &::after {
-          content: '✦';
+          content: "✦";
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          color: #6D28D9;
+          color: #6d28d9;
           font-size: 1.2rem;
           opacity: 0;
           transition: all 0.3s ease;
@@ -170,20 +159,24 @@
       border-radius: 2rem;
       border: none;
       background: rgba(109, 40, 217, 0.1);
-      color: #6D28D9;
+      color: #6d28d9;
       font-weight: 500;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(45deg, rgba(109, 40, 217, 0.2), transparent);
+        background: linear-gradient(
+          45deg,
+          rgba(109, 40, 217, 0.2),
+          transparent
+        );
         transform: translateX(-100%);
         transition: transform 0.3s ease;
       }
@@ -224,7 +217,8 @@
       display: flex;
     }
 
-    .info-card, .map-card {
+    .info-card,
+    .map-card {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -269,7 +263,7 @@
           border-bottom: 1px solid var(--border);
 
           svg {
-            color: #6D28D9;
+            color: #6d28d9;
             font-size: 1.4rem;
           }
         }
@@ -303,19 +297,19 @@
           }
 
           .social-link {
-            color: #6D28D9;
+            color: #6d28d9;
             text-decoration: none;
             transition: all 0.3s ease;
             font-weight: 500;
 
             &:hover {
-              color: #8B5CF6;
+              color: #8b5cf6;
               text-decoration: underline;
             }
           }
 
           svg {
-            color: #6D28D9;
+            color: #6d28d9;
             font-size: 1.4rem;
           }
         }
@@ -328,9 +322,9 @@
       border-radius: 0.75rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       padding: 1.5rem;
-.leaflet-container{
-  z-index: 1;
-}
+      .leaflet-container {
+        z-index: 1;
+      }
       .section-title {
         margin: 0 0 1.25rem 0;
         display: flex;
@@ -342,7 +336,7 @@
         border-bottom: 1px solid var(--border);
 
         svg {
-          color: #6D28D9;
+          color: #6d28d9;
           font-size: 1.4rem;
         }
       }
@@ -364,13 +358,13 @@
           }
 
           .map-link {
-            color: #6D28D9;
+            color: #6d28d9;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
 
             &:hover {
-              color: #8B5CF6;
+              color: #8b5cf6;
               text-decoration: underline;
             }
           }
@@ -407,7 +401,7 @@
 
       svg {
         font-size: 2.5rem;
-        color: #6D28D9;
+        color: #6d28d9;
       }
 
       .stat-info {
@@ -485,20 +479,22 @@
       }
 
       .book-name {
-        color: #6D28D9;
+        color: #6d28d9;
         text-decoration: none;
         font-weight: 500;
         transition: all 0.3s ease;
 
         &:hover {
-          color: #8B5CF6;
+          color: #8b5cf6;
           text-decoration: underline;
         }
       }
     }
   }
 
-  :where(.css-dev-only-do-not-override-1v5z42l).ant-typography.ant-typography-secondary {
+  :where(
+      .css-dev-only-do-not-override-1v5z42l
+    ).ant-typography.ant-typography-secondary {
     color: var(--text-primary);
   }
 }

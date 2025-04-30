@@ -1,6 +1,5 @@
 import React from "react";
-import { Link,  useLocation } from "react-router-dom";
-// import {NavLink} from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 // import { LuLayoutDashboard } from "react-icons/lu";
 import { LuLibraryBig } from "react-icons/lu";
 import { LuBook } from "react-icons/lu";
@@ -8,18 +7,27 @@ import { LuBook } from "react-icons/lu";
 // import { TbSettingsStar } from "react-icons/tb";
 import { MdAddToPhotos } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
-// import { FaRegUserCircle } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useProfile } from "../../hooks/useProfile";
+
+
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { data: profile } = useProfile();
+
 
   const menuItems = [
     // { path: "/", label: t("sidebar.dashboard"), icon: <LuLayoutDashboard /> },
-    { path: "/libraries", label: t("sidebar.libraries"), icon: <LuLibraryBig /> },
+    {
+      path: "/libraries",
+      label: t("sidebar.libraries"),
+      icon: <LuLibraryBig />,
+    },
     { path: "/books", label: t("sidebar.books"), icon: <LuBook /> },
     // {
     //   path: "/mostsearched",
@@ -27,15 +35,20 @@ const Sidebar: React.FC = () => {
     //   icon: <MdOutlineYoutubeSearchedFor />,
     // },
     // { path: "/settings", label: t("sidebar.settings"), icon: <TbSettingsStar /> },
-    { path: "/addlibrary", label: t("sidebar.addLibrary"), icon: <MdAddToPhotos /> },
+    {
+      path: "/addlibrary",
+      label: t("sidebar.addLibrary"),
+      icon: <MdAddToPhotos />,
+    },
   ];
 
   return (
     <div className="sidebar">
       <div className="sidebartop">
-        {/* <NavLink className="sidebar__profile" to="/profile">
-          <FaRegUserCircle className="avatar" /> Sodiqov Abdulloh ({t("sidebar.admin")})
-        </NavLink> */}
+        <NavLink className="sidebar__profile" to="/profile">
+          <FaRegUserCircle className="avatar" />
+          <span className="text">{profile?.name || "Loading..."}</span>
+        </NavLink>
         <ul className="sidebar__menu">
           {menuItems.map((item) => (
             <Link to={item.path} key={item.path}>
@@ -65,7 +78,6 @@ const Sidebar: React.FC = () => {
         <span className="text">{t("sidebar.logout")}</span>
       </div>
     </div>
-    
   );
 };
 

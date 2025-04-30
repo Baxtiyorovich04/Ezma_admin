@@ -1,15 +1,13 @@
 @use "../base/variables" as *;
 
-.libraries-container {
+.most-searched-container {
   padding: 20px;
   height: calc(100vh - 84px); /* Adjust based on your layout */
   overflow: hidden;
-
   width: 100%;
   max-width: 98%;
-  position: relative;
 
-  .libraries-header {
+  .most-searched-header {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -106,9 +104,8 @@
     }
   }
 
-  .libraries-table {
-    height: calc(100% - 80px);
-    margin-bottom: 60px;
+  .most-searched-table {
+    height: 100%;
 
     .ant-table {
       background: transparent;
@@ -215,68 +212,32 @@
       }
     }
 
-    .library-name {
-      color: var(--text-primary);
-      font-weight: 500;
-      text-decoration: none;
-
-      &:hover {
-        color: $primary-color;
-      }
-    }
-
     .status-tag {
       border-radius: 16px;
       padding: 2px 12px;
       text-transform: capitalize;
 
       &.ant-tag-success {
-        background-color: rgba(#22c55e, 0.1) !important;
-        border: 1px solid rgba(#22c55e, 0.2) !important;
-        color: #22c55e !important;
+        background-color: rgba(#22c55e, 0.1);
+        border: 1px solid rgba(#22c55e, 0.2);
+        color: #22c55e;
       }
 
       &.ant-tag-error {
-        background-color: rgba(#ef4444, 0.1) !important;
-        border: 1px solid rgba(#ef4444, 0.2) !important;
-        color: #ef4444 !important;
-      }
-    }
-
-    .action-button {
-      background: transparent;
-      border: none;
-      color: var(--text-primary);
-      cursor: pointer;
-      font-size: 18px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background-color: var(--bg-secondary);
-      }
-    }
-
-    // Checkbox styling
-    .ant-checkbox-wrapper {
-      .ant-checkbox-inner {
-        background-color: transparent;
-        border-color: var(--border);
-      }
-
-      .ant-checkbox-checked .ant-checkbox-inner {
-        background-color: $primary-color;
-        border-color: $primary-color;
+        background-color: rgba(#ef4444, 0.1);
+        border: 1px solid rgba(#ef4444, 0.2);
+        color: #ef4444;
       }
     }
 
     // Pagination styling
     .ant-pagination {
-      margin-top: 20px;
+      margin: 16px 0;
+      display: flex;
+      justify-content: flex-end;
 
       .ant-pagination-item {
-        background-color: var(--bg-secondary);
+        background-color: var(--bg-primary);
         border-color: var(--border);
 
         a {
@@ -285,6 +246,7 @@
 
         &-active {
           border-color: $primary-color;
+          background-color: rgba($primary-color, 0.1);
 
           a {
             color: $primary-color;
@@ -295,115 +257,54 @@
       .ant-pagination-prev,
       .ant-pagination-next {
         button {
-          background-color: var(--bg-secondary);
+          background-color: var(--bg-primary);
           border-color: var(--border);
           color: var(--text-primary);
+        }
+      }
+
+      .ant-pagination-options {
+        .ant-select {
+          .ant-select-selector {
+            background-color: var(--bg-primary);
+            border-color: var(--border);
+            color: var(--text-primary);
+          }
+
+          .ant-select-arrow {
+            color: var(--text-secondary);
+          }
         }
       }
     }
   }
 }
 
-.loading-container,
-.error-container {
+.show-more-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  width: 100%;
+  margin: 20px 0;
 
-  .ant-spin-text {
-    color: var(--text-primary);
-    margin-top: 8px;
-  }
-}
+  .show-more-button {
+    background-color: $primary-color;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    height: 48px;
+    padding: 0 32px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba($primary-color, 0.2);
 
-.pagination {
-  position: absolute;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  background: var(--bg-primary);
-  padding: 10px 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  width: fit-content;
+    &:hover {
+      background-color: darken($primary-color, 5%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba($primary-color, 0.3);
+    }
 
-  :global {
-    .ant-pagination {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      .ant-pagination-total-text {
-        color: var(--text-secondary);
-      }
-
-      .ant-pagination-item {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        min-width: 32px;
-        height: 32px;
-        line-height: 30px;
-
-        a {
-          color: var(--text-primary);
-        }
-
-        &:hover {
-          border-color: var(--primary-color);
-
-          a {
-            color: var(--primary-color);
-          }
-        }
-
-        &-active {
-          background: var(--bg-secondary);
-          border: none;
-
-          a {
-            color: var(--primary-color);
-          }
-        }
-      }
-
-      .ant-pagination-prev,
-      .ant-pagination-next {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        min-width: 32px;
-        height: 32px;
-
-        .ant-pagination-item-link {
-          background: transparent;
-          color: var(--text-primary);
-          border: none;
-
-          &:hover {
-            color: var(--primary-color);
-          }
-        }
-      }
-
-      .ant-pagination-options-quick-jumper {
-        color: var(--text-secondary);
-
-        input {
-          background-color: var(--bg-secondary);
-          border: 1px solid var(--border);
-          color: var(--text-primary);
-
-          &:hover,
-          &:focus {
-            border-color: var(--primary-color);
-          }
-        }
-      }
+    &:active {
+      transform: translateY(0);
     }
   }
 }

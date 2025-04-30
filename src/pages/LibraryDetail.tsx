@@ -1,6 +1,17 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useLibraryDetail } from "../hooks/useLibraryDetail";
-import { Spin, Alert, Table, Tag, ConfigProvider, theme, Card, Row, Col, Typography } from "antd";
+import {
+  Spin,
+  Alert,
+  Table,
+  Tag,
+  ConfigProvider,
+  theme,
+  Card,
+  Row,
+  Col,
+  Typography,
+} from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import {
   FaMapMarkerAlt,
@@ -17,13 +28,15 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { LatLngTuple } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { useEffect } from "react";
 
 const { Title, Text } = Typography;
 
 // Fix for default marker icon
 const icon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
+  iconRetinaUrl:
+    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
@@ -36,6 +49,15 @@ const LibraryDetail = () => {
   const navigate = useNavigate();
   const { data, isLoading, error } = useLibraryDetail(Number(id));
   const { t } = useTranslation();
+
+  // Null-safe extraction
+  const library = data?.results.library;
+  const books = data?.results.books;
+  const socialMedia = library?.social_media || {};
+  const position: LatLngTuple =
+    library?.latitude && library?.longitude
+      ? [parseFloat(library.latitude), parseFloat(library.longitude)]
+      : [39.026, 66.496];
 
   const columns = [
     {
@@ -66,6 +88,14 @@ const LibraryDetail = () => {
     },
   ];
 
+  useEffect(() => {
+    const el = document.querySelector(".layout__content");
+    if (el) el.classList.add("scrollable-content");
+    return () => {
+      if (el) el.classList.remove("scrollable-content");
+    };
+  }, []);
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -84,19 +114,16 @@ const LibraryDetail = () => {
       <div className="error-container">
         <Alert
           message={t("common.error")}
-          description={t("libraryDetail.loadError")}
+          description={
+            t("libraryDetail.loadError") +
+            (error?.message ? `: ${error.message}` : "")
+          }
           type="error"
           showIcon
         />
       </div>
     );
   }
-
-  const library = data?.results.library;
-  const books = data?.results.books;
-  const position: LatLngTuple = library?.latitude && library?.longitude 
-    ? [parseFloat(library.latitude), parseFloat(library.longitude)] 
-    : [39.026, 66.496];
 
   return (
     <div className="library-detail">
@@ -107,10 +134,14 @@ const LibraryDetail = () => {
 
       <div className="library-detail__header">
         <div className="library-detail__info">
-          <Title level={2} className="library-name">{library?.name}</Title>
+          <Title level={2} className="library-name">
+            {library?.name}
+          </Title>
           <div className="library-detail__status">
             <Tag color={data?.results.is_active ? "success" : "error"}>
-              {data?.results.is_active ? t("libraryDetail.active") : t("libraryDetail.inactive")}
+              {data?.results.is_active
+                ? t("libraryDetail.active")
+                : t("libraryDetail.inactive")}
             </Tag>
           </div>
         </div>
@@ -124,11 +155,15 @@ const LibraryDetail = () => {
                 <FaBuilding /> {t("libraryDetail.libraryInfo")}
               </Title>
               <div className="info-item">
-                <Text strong className="info-label">{t("libraryDetail.address")}:</Text>
+                <Text strong className="info-label">
+                  {t("libraryDetail.address")}:
+                </Text>
                 <Text className="info-value">{library?.address}</Text>
               </div>
               <div className="info-item">
-                <Text strong className="info-label">{t("libraryDetail.phone")}:</Text>
+                <Text strong className="info-label">
+                  {t("libraryDetail.phone")}:
+                </Text>
                 <Text className="info-value">{data?.results.phone}</Text>
               </div>
             </div>
@@ -137,13 +172,13 @@ const LibraryDetail = () => {
               <Title level={4} className="section-title">
                 <FaInfoCircle /> {t("libraryDetail.socialMedia")}
               </Title>
-              {library?.social_media.telegram || library?.social_media.instagram ? (
+              {socialMedia.telegram || socialMedia.instagram ? (
                 <>
-                  {library?.social_media.telegram && (
+                  {socialMedia.telegram && (
                     <div className="info-item">
                       <FaTelegram />
                       <a
-                        href={library.social_media.telegram}
+                        href={socialMedia.telegram}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="social-link"
@@ -152,11 +187,11 @@ const LibraryDetail = () => {
                       </a>
                     </div>
                   )}
-                  {library?.social_media.instagram && (
+                  {socialMedia.instagram && (
                     <div className="info-item">
                       <FaInstagram />
                       <a
-                        href={library.social_media.instagram}
+                        href={socialMedia.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="social-link"
@@ -168,7 +203,9 @@ const LibraryDetail = () => {
                 </>
               ) : (
                 <div className="info-item">
-                  <Text type="secondary">{t("libraryDetail.noSocialMedia")}</Text>
+                  <Text type="secondary">
+                    {t("libraryDetail.noSocialMedia")}
+                  </Text>
                 </div>
               )}
             </div>
@@ -184,28 +221,36 @@ const LibraryDetail = () => {
               <MapContainer
                 center={position}
                 zoom={15}
-                style={{ height: "100%", width: "100%", borderRadius: "0.5rem" }}
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: "0.5rem",
+                }}
               >
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <Marker position={position} icon={icon}>
-                  <Popup>
-                    <div className="map-popup">
-                      <Title level={5}>{library?.name}</Title>
-                      <Text>{library?.address}</Text>
-                      <a
-                        href={library?.google_maps_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="map-link"
-                      >
-                        {t("libraryDetail.viewOnGoogleMaps")}
-                      </a>
-                    </div>
-                  </Popup>
-                </Marker>
+                {library?.latitude && library?.longitude && (
+                  <Marker position={position} icon={icon}>
+                    <Popup>
+                      <div className="map-popup">
+                        <Title level={5}>{library?.name}</Title>
+                        <Text>{library?.address}</Text>
+                        {library?.google_maps_url && (
+                          <a
+                            href={library.google_maps_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="map-link"
+                          >
+                            {t("libraryDetail.viewOnGoogleMaps")}
+                          </a>
+                        )}
+                      </div>
+                    </Popup>
+                  </Marker>
+                )}
               </MapContainer>
             </div>
           </Card>
@@ -217,7 +262,9 @@ const LibraryDetail = () => {
           <FaBook />
           <div className="stat-info">
             <Text className="stat-value">{data?.results.total_books}</Text>
-            <Text type="secondary" className="stat-label">{t("libraryDetail.totalBooks")}</Text>
+            <Text type="secondary" className="stat-label">
+              {t("libraryDetail.totalBooks")}
+            </Text>
           </div>
         </div>
       </div>
