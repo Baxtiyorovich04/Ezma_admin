@@ -8,15 +8,15 @@ import { useTranslation } from "react-i18next";
 import { useProfile } from "../../hooks/useProfile";
 import { NavLink } from "react-router-dom";
 
+
 interface HeaderProps {
   onToggleSidebar: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
-  const { data: profile, error } = useProfile();
-
-  const { theme, toggleTheme } = useThemeStore();
+  const { data: profile } = useProfile();
   const { i18n } = useTranslation();
+  const { theme, toggleTheme } = useThemeStore();
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
