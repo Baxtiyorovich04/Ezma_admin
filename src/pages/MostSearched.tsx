@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Table, Card, Typography, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useBooks, Book } from '../hooks/useBooks';
-import '../scss/pages/_mostSearched.scss';
+
 
 const { Title } = Typography;
 const { Search } = Input;
